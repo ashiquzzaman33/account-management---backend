@@ -28,7 +28,7 @@
 					$account_id = DB::table('accounts')->select('id')->where('name', '=', $name)->first();
 					DB::table('general_accounts')->insert(array(
 							'account_id'			=>	$account_id->id,
-							'narration' 			=> 	"Opening balance of ".$name,
+							'narration' 			=> 	"Used to keep Opening balance of ".$name,
 							'voucher_id' 			=> 	1,
 							'against_account_id' 	=> 	$parent,
 							'location'				=> 	$location,
