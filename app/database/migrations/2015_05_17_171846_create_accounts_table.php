@@ -20,6 +20,7 @@ class CreateAccountsTable extends Migration {
 		});
 		Schema::table('accounts', function($table) {
    				 $table->foreign('parent')->references('id')->on('accounts')->onDelete('cascade');
+   				 $table->unique( array('name','parent', 'description') );
 		});
 	}
 
