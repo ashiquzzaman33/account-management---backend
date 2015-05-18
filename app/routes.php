@@ -15,3 +15,12 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/get/accounts', array(
+		'as'	=>	'getaccounts',
+		'uses'	=>	'AccountController@getAllAccount'
+));
+Route::get('/add/account', array(
+		'as'	=>	'addAccount',
+		'uses'	=>	'AccountController@addAccount'
+));
