@@ -1,0 +1,4 @@
+1. create a table to store locations
+2. create a route to set and get all locations
+3. when new account is created, update "childrens" table
+4. 
