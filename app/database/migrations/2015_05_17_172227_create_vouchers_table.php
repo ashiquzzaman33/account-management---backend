@@ -14,7 +14,7 @@ class CreateVouchersTable extends Migration {
 	{
 			Schema::create("vouchers", function($table){
 				$table->bigIncrements('id');
-				$table->timestamp('date');
+				$table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->string("location");
 				$table->string("narration");
 		});

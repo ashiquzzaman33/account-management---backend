@@ -22,11 +22,10 @@
 			);
 			$account_id = DB::table('accounts')->select('id')->where('name', '=', $name)->first();
 			DB::table('general_accounts')->insert(array(
-				'date' 					=> 	time(),
 				'account_id'			=>	$account_id->id,
 				'narration' 			=> 	"Opening balance of ".$name,
-				'voucher_id' 			=> 	0,
-				'against_account_id' 	=> 	0,
+				'voucher_id' 			=> 	1,
+				'against_account_id' 	=> 	$parent,
 				'location'				=> 	$location,
 				'dr'					=>	0,
 				'cr'					=>	0,

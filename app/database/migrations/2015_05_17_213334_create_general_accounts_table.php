@@ -15,7 +15,7 @@ class CreateGeneralAccountsTable extends Migration {
 			Schema::create("general_accounts", function($table){
 				$table->bigIncrements('sl');
 				$table->bigInteger('account_id')->unsigned();
-				$table->timestamp('date');
+				$table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->string("narration");
 				$table->bigInteger('voucher_id')->unsigned();
 				$table->bigInteger('against_account_id')->unsigned();
