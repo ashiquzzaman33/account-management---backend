@@ -9,5 +9,6 @@ Thumbs.db
 #If your files are already stored in your local commit tree. You need to remove #them from the repository this can be done via 
 #git rm --cached app/config/database.php
 /app/config/database.php
+~$*
 
 
