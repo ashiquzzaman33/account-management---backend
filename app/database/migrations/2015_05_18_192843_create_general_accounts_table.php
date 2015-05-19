@@ -19,10 +19,10 @@ class CreateGeneralAccountsTable extends Migration {
 				$table->string("narration");
 				$table->bigInteger('voucher_id')->unsigned();
 				$table->bigInteger('against_account_id')->unsigned();
-				$table->string("location");
-				$table->decimal('dr', 15, 2)->default(0.0);
-				$table->decimal('cr', 15, 2)->default(0.0);
-				$table->decimal('balance', 15, 2)->default(0.0);	
+				$table->bigInteger("location_id")->unsigned();
+				$table->decimal('dr', 15, 3)->default(0.0);
+				$table->decimal('cr', 15, 3)->default(0.0);
+				$table->decimal('balance', 15, 3)->default(0.0);	
 		});
 
 			
@@ -30,8 +30,11 @@ class CreateGeneralAccountsTable extends Migration {
    				 $table->foreign('voucher_id')->references('id')->on('vouchers')->onDelete('cascade');
    				 $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
    				 $table->foreign('against_account_id')->references('id')->on('accounts')->onDelete('cascade');
+   				 $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+
 		});
 	}
+	
 
 	/**
 	 * Reverse the migrations.

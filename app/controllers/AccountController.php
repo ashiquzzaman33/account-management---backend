@@ -12,7 +12,7 @@
 			$parent 			=	Input::get('parent');
 			$description 		=	Input::get('description');
 			$opening_balance	= 	Input::get('opening_balance');
-			$location			= 	Input::get("location");
+			$location			= 	Input::get("location_id");
 
 			DB::beginTransaction();
 			$status 	= "Success";
@@ -31,10 +31,15 @@
 							'narration' 			=> 	"Used to keep Opening balance of ".$name,
 							'voucher_id' 			=> 	1,
 							'against_account_id' 	=> 	$parent,
-							'location'				=> 	$location,
+							'location_id'				=> 	$location,
 							'dr'					=>	0,
 							'cr'					=>	0,
 							'balance'				=>	$opening_balance
+						)
+					);
+					DB::table('childrens')->insert(array(
+							'parent'			=>	$parent,
+							'children' 			=> 	$account_id->id
 						)
 					);
 					DB::commit();
@@ -43,7 +48,7 @@
 			catch(\Exception $e)
 			{
 					$status = "Failed";
-					$message = $e;
+					$message = $e;					
 				    DB::rollback();
 			}
 			$mss = array("Status" => $status, "Message" => $message);

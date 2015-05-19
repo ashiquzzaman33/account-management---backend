@@ -15,8 +15,10 @@ class CreateVouchersTable extends Migration {
 			Schema::create("vouchers", function($table){
 				$table->bigIncrements('id');
 				$table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
-				$table->string("location");
+				$table->bigInteger("location_id")->unsigned();
 				$table->string("narration");
+				$table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+
 		});
 	}
 

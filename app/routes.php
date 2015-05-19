@@ -24,3 +24,11 @@ Route::post('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
+Route::get('/add/location', array(
+		'as'	=>	'addLocation',
+		'uses'	=>	'LocationController@addLocation'
+));
+Route::get('/get/locations', array(
+		'as'	=>	'getLocations',
+		'uses'	=>	'LocationController@getAllLocation'
+));
