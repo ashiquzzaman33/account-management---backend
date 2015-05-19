@@ -20,7 +20,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::post('/add/account', array(
+Route::get('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -39,6 +39,14 @@ Route::get('/get/next/voucherno', array(
 Route::get('/add/voucher', array(
 		'as'	=>	'addVoucher',
 		'uses'	=>	'VoucherController@addVoucher'
+));
+Route::get('/report/get/balance', array(
+		'as'	=>	'getBalance',
+		'uses'	=>	'ReportController@getBalanceOfAccount '
+));
+Route::get('/report/get/voucher', array(
+		'as'	=>	'getVoucher',
+		'uses'	=>	'ReportController@getVoucher'
 ));
 
 

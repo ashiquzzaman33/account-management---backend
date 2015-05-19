@@ -14,3 +14,8 @@
 	http://localhost/acc/public/get/locations
 *Accounts
 	http://localhost/acc/public/get/accounts
+
+
+*****************REPORT*********************
+*Get Voucher by id
+	http://localhost/acc/public/report/get/voucher?voucher_id=2
