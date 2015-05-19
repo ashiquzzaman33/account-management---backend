@@ -15,6 +15,7 @@ class CreateVoucherJournalsTable extends Migration {
 			Schema::create("voucher_jorunals", function($table){
 				$table->bigInteger('voucher_id')->unsigned();
 				$table->bigInteger('account_id')->unsigned();
+				$table->bigInteger('against_account_id')->unsigned();
 				$table->decimal('dr', 15, 3)->default(0.0);
 				$table->decimal('cr', 15, 3)->default(0.0);
 				$table->string("remark");
@@ -22,6 +23,7 @@ class CreateVoucherJournalsTable extends Migration {
 		Schema::table('voucher_jorunals', function($table) {
    				 $table->foreign('voucher_id')->references('id')->on('vouchers')->onDelete('cascade');
    				 $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+   				 $table->foreign('against_account_id')->references('id')->on('accounts')->onDelete('cascade');
 		});
 	}
 

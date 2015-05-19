@@ -1,0 +1,16 @@
+		Add Something
+*********************************************
+*Voucher
+	http://localhost/acc/public/add/voucher?location_id=1&voucher_id=2&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":3,"remark":"This is a test for account 4"},{"amount":1000,"account_id":5,"remark":"This is a test for account 5"},{"amount":555,"account_id":6,"remark":"This is a test for account 6"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
+*Account
+	http://localhost/acc/public/add/account?name=Raju&parent=1&description=None&opening_balance=233&location_id=1
+*Location
+	http://localhost/acc/public/add/location?name=khulna&details=Fulbarigate, khulna, Bangladesh
+		Get Something
+**********************************************
+*Next Voucher No
+	http://localhost/acc/public/get/next/voucherno
+*Locations
+	http://localhost/acc/public/get/locations
+*Accounts
+	http://localhost/acc/public/get/accounts

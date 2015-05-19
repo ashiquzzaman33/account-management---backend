@@ -32,3 +32,14 @@ Route::get('/get/locations', array(
 		'as'	=>	'getLocations',
 		'uses'	=>	'LocationController@getAllLocation'
 ));
+Route::get('/get/next/voucherno', array(
+		'as'	=>	'nextVoucherNo',
+		'uses'	=>	'VoucherController@nextVoucherNo'
+));
+Route::get('/add/voucher', array(
+		'as'	=>	'addVoucher',
+		'uses'	=>	'VoucherController@addVoucher'
+));
+
+
+
