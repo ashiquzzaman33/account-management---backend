@@ -48,6 +48,10 @@ Route::get('/report/get/voucher', array(
 		'as'	=>	'getVoucher',
 		'uses'	=>	'ReportController@getVoucher'
 ));
+Route::get('/edit/location', array(
+		'as'	=>	'editLocation',
+		'uses'	=>	'LocationController@editLocation'
+));
 
 
 

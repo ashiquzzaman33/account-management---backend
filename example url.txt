@@ -19,3 +19,7 @@
 *****************REPORT*********************
 *Get Voucher by id
 	http://localhost/acc/public/report/get/voucher?voucher_id=2
+
+*******************EDIT SOMETHING************
+*Edit Location:
+	http://localhost/acc/public/edit/location?id=1&name=None%20for%20test&details=Initilize%20for%20test
