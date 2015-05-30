@@ -28,6 +28,15 @@ Route::get('/add/location', array(
 		'as'	=>	'addLocation',
 		'uses'	=>	'LocationController@addLocation'
 ));
+Route::get('/add/voucher_type', array(
+		'as'	=>	'addVoucherType',
+		'uses'	=>	'FilterController@addVoucherType'
+));
+Route::get('/add/account_type', array(
+		'as'	=>	'addAccountType',
+		'uses'	=>	'FilterController@addAccountType'
+));
+
 Route::get('/get/locations', array(
 		'as'	=>	'getLocations',
 		'uses'	=>	'LocationController@getAllLocation'
@@ -51,6 +60,11 @@ Route::get('/report/get/voucher', array(
 Route::get('/edit/location', array(
 		'as'	=>	'editLocation',
 		'uses'	=>	'LocationController@editLocation'
+));
+
+Route::get('/edit/account', array(
+		'as'	=>	'editAccount',
+		'uses'	=>	'AccountController@editAccount'
 ));
 
 
