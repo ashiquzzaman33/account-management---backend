@@ -2,8 +2,12 @@
 *********************************************
 *Voucher
 	http://localhost/acc/public/add/voucher?location_id=1&voucher_id=2&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":3,"remark":"This is a test for account 4"},{"amount":1000,"account_id":5,"remark":"This is a test for account 5"},{"amount":555,"account_id":6,"remark":"This is a test for account 6"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
+*Voucher Type
+	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
+*Account type
+	http://localhost/acc/public/add/account_type?type_name=Test&details=Test
 *Account
-	http://localhost/acc/public/add/account?name=Raju&parent=1&description=None&opening_balance=233&location_id=1
+	http://localhost/acc/public/add/account?name=Raju&parent=1&account_type=1&description=None&opening_balance=233&location=1
 *Location
 	http://localhost/acc/public/add/location?name=khulna&details=Fulbarigate, khulna, Bangladesh
 		Get Something
@@ -14,3 +18,14 @@
 	http://localhost/acc/public/get/locations
 *Accounts
 	http://localhost/acc/public/get/accounts
+
+
+*****************REPORT*********************
+*Get Voucher by id
+	http://localhost/acc/public/report/get/voucher?voucher_id=2
+
+*******************EDIT SOMETHING************
+*Edit Location:
+	http://localhost/acc/public/edit/location?id=1&name=None%20for%20test&details=Initilize%20for%20test
+*Edit Account:
+	http://localhost/acc/public/edit/account?id=15&name=new%20test&parent=13&description=None%20your%20concern&account_type=2&old_parent_id=1&new_parent_id=13

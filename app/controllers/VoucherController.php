@@ -68,22 +68,24 @@
 								//For debit account
 								if($baseA==1){
 									if($trans->amount<0){
-										DB::table('voucher_jorunals')->insert(array(
+										DB::table('general_accounts')->insert(array(
 
 											'voucher_id' 			=>	$voucher_id,
 											'account_id' 			=>	$baseAccDebit,
 											'against_account_id'	=>	$trans->account_id,	
 											'remark' 				=>	$trans->remark,
 											'dr'					=>	(-1)*$trans->amount,
+											'balance'				=>	Utilities::getCurrentBalance($baseAccDebit)+((-1)*$trans->amount),
 											'cr'					=>	0
 											)
 										);
-										DB::table('voucher_jorunals')->insert(array(
+										DB::table('general_accounts')->insert(array(
 
 											'voucher_id' 			=>	$voucher_id,
 											'account_id' 			=>	$trans->account_id,
 											'against_account_id'	=>	$baseAccDebit,	
 											'remark' 				=>	$trans->remark,
+											'balance'				=>	Utilities::getCurrentBalance($trans->account_id)+($trans->amount),
 											'dr'					=>	0,
 											'cr'					=>	(-1)*$trans->amount
 											)
@@ -94,21 +96,23 @@
 								else if($baseA==2){
 
 									if($trans->amount>=0){
-										DB::table('voucher_jorunals')->insert(array(
+										DB::table('general_accounts')->insert(array(
 
 											'voucher_id' 			=>	$voucher_id,
 											'account_id' 			=>	$baseAccCredit,
 											'against_account_id'	=>	$trans->account_id,	
 											'remark' 				=>	$trans->remark,
+											'balance'				=>	Utilities::getCurrentBalance($baseAccCredit)+((-1)*$trans->amount),
 											'dr'					=>	0,
 											'cr'					=>	$trans->amount
 											)
 										);
-										DB::table('voucher_jorunals')->insert(array(
+										DB::table('general_accounts')->insert(array(
 
 											'voucher_id' 			=>	$voucher_id,
 											'account_id' 			=>	$trans->account_id,
-											'against_account_id'	=>	$baseAccDebit,	
+											'against_account_id'	=>	$baseAccCredit,
+											'balance'				=>  Utilities::getCurrentBalance($trans->account_id)+($trans->amount),												
 											'remark' 				=>	$trans->remark,
 											'dr'					=>	$trans->amount,
 											'cr'					=>	0

@@ -13,13 +13,15 @@ class CreateAccountsTable extends Migration {
 	public function up()
 	{
 		Schema::create("accounts", function($table){
-			$table->bigIncrements('id');
+			 $table->bigIncrements('id');
 			 $table->string("name");
+			 $table->bigInteger("account_type")->unsigned();
 			 $table->bigInteger("parent")->unsigned()->default(0);
 			 $table->string("description");
 		});
 		Schema::table('accounts', function($table) {
    				 $table->foreign('parent')->references('id')->on('accounts')->onDelete('cascade');
+   				 $table->foreign('account_type')->references('id')->on('account_types')->onDelete('cascade');
    				 $table->unique( array('name','parent', 'description') );
 		});
 	}

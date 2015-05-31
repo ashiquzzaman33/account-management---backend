@@ -1,23 +1,23 @@
 <?php 
 
-	class LocationController extends BaseController
+	class FilterController extends BaseController
 	{
 		
-		public function getAllLocation(){
+		/*public function getAllLocation(){
 			$loc = DB::table('locations')->get();
 			return json_encode($loc);
-		}
-		public function addLocation(){
-			$name 				=	Input::get('name');
-			$details 			=	Input::get('details');
+		}*/
+		public function addAccountType(){
+			$type 		= Input::get("type_name");
+			$details 	= Input::get("details");
 
 			DB::beginTransaction();
 			$status 	= "Success";
 			$message 	= " ";
 			try {
-				    DB::table('locations')->insert(array(
-							'name' 			=> $name,
-							'details' 		=> $details,
+				    DB::table('account_types')->insert(array(
+							'type_name' 			=> $type,
+							'details' 				=> $details,
 						)
 					);
 					DB::commit();
@@ -31,18 +31,19 @@
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
 		}
-		public function editLocation(){
-			$id       =  Input::get('id');
-			$name 	  =  Input::get('name');
-			$details  =  Input::get('details');
+		public function addVoucherType(){
+			$type 		= Input::get("type_name");
+			$details 	= Input::get("details");
 
 			DB::beginTransaction();
 			$status 	= "Success";
 			$message 	= " ";
 			try {
-				   	DB::table('locations')
-           				->where('id', $id)
-            			->update(array('name' => $name, 'details' => $details));
+				    DB::table('voucher_types')->insert(array(
+							'type_name' 			=> $type,
+							'details' 				=> $details,
+						)
+					);
 					DB::commit();
 			}
 			catch(\Exception $e)
@@ -53,7 +54,6 @@
 			}
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
-
 		}
 	}
  ?>
