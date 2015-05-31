@@ -1,0 +1,28 @@
+expense voucher
+=============================
+[
+	{
+		date:"22/05/2015",
+		location_id:2,
+		party_name:"mr.abc",
+		party_address:"telegati",
+		middle_man_name:"mr.bal",
+		middle_man_address:"fultola",
+		[
+			{
+				expense_description:"aaaaaa",
+				amount:500
+			},
+			{
+				expense_description:"bbbbbb",
+				amount:500
+			}
+		],
+		total:2000,
+		total_in_word:"Two thousands taka only"
+	}
+]
+
+deposit voucher
+=============================
+date, location_id, description, party_name, bank_acc_no, branch, address, payment_type, amount, amount_in_word, note
