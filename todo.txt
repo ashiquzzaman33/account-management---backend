@@ -26,3 +26,27 @@ expense voucher
 deposit voucher
 =============================
 date, location_id, description, party_name, bank_acc_no, branch, address, payment_type, amount, amount_in_word, note
+
+
+
+
+1. get all Account_type
+
+20-06-2015
+================
+1. create project (project_name, party_name, party_address, starting_date, operation_date, dimilish_date, project_location)
+2. get All projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+

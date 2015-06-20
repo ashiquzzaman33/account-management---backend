@@ -32,7 +32,7 @@ Route::get('/add/voucher_type', array(
 		'as'	=>	'addVoucherType',
 		'uses'	=>	'FilterController@addVoucherType'
 ));
-Route::get('/add/account_type', array(
+Route::post('/add/account_type', array(
 		'as'	=>	'addAccountType',
 		'uses'	=>	'FilterController@addAccountType'
 ));
@@ -57,7 +57,7 @@ Route::get('/report/get/voucher', array(
 		'as'	=>	'getVoucher',
 		'uses'	=>	'ReportController@getVoucher'
 ));
-Route::get('/edit/location', array(
+Route::post('/edit/location', array(
 		'as'	=>	'editLocation',
 		'uses'	=>	'LocationController@editLocation'
 ));
