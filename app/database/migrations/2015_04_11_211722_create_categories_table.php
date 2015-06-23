@@ -14,11 +14,8 @@ class CreateCategoriesTable extends Migration {
 	{
 		Schema::create("categories", function($table){
 			$table->bigIncrements('id');
-			$table->string("name");
+
 			$table->string("details");
-			$table->string("unit");
-
-
 			$table->string("name")->unique();;
 			$table->decimal("quantity",15,5)->default(0);
 			$table->string("unit");

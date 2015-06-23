@@ -19,6 +19,7 @@ class CreateGodownsTable extends Migration {
 			$table->bigInteger('location')->unsigned();
 
 			$table->foreign('location')->references('id')->on('locations')->onDelete('cascade');
+		});
 
 	}
 
