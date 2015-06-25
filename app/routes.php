@@ -67,5 +67,10 @@ Route::get('/edit/account', array(
 		'uses'	=>	'AccountController@editAccount'
 ));
 
+Route::get('/add/expense/vouchers', array(
+		'as'	=>	'createExpenseVouchers',
+		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
+));
+
 
 
