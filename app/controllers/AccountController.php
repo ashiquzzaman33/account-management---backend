@@ -56,6 +56,8 @@
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
 		}
+
+
 		public function editAccount(){
 			$id 				=	Input::get('id');
 			$name 				=	Input::get('name');
@@ -97,6 +99,64 @@
 			return json_encode($mss);
 
 
+		}
+
+
+
+
+		//----------------------For Seeded purpose only---------
+
+		public static function addAccountForSeed($id, $name, $parent, $account_type, $description, $opening_balance, $location){
+			try {
+				    DB::table('accounts')->insert(array(
+				    		'id'			=> $id,
+							'name' 			=> $name,
+							'parent' 		=> $parent,
+							'account_type'	=>  $account_type,
+							'description' 	=> $description
+						)
+					);
+
+					DB::table('general_accounts')->insert(array(
+							'account_id'			=>	$id,
+							'voucher_id' 			=> 	1,
+							'against_account_id' 	=> 	$parent,
+							'dr'					=>	0,
+							'cr'					=>	0,
+							'balance'				=>	$opening_balance,
+							'remark' 				=> 	"Used to keep Opening balance of ".$name
+
+						)
+					);
+					DB::table('childrens')->insert(array(
+							'parent'			=>	$parent,
+							'children' 			=> 	$id
+						)
+					);
+
+			}
+			catch(\Exception $e)
+			{
+				    throw $e;				    
+			}
+		}
+
+		public static function seed($data){
+			DB::beginTransaction();
+			try {
+				    foreach ($data as  $d) {
+				 		AccountController::addAccountForSeed($d['id'], $d['name'], $d['parent'], $d['account_type'],$d['description'], 0, 1);
+					}
+					//throw new Exception("Error Processing Request", 1);
+					
+					DB::commit();
+			}
+			catch(\Exception $e)
+			{				
+				   DB::rollback();
+				   throw $e;
+				    
+			}
 		}
 	}
  ?>
