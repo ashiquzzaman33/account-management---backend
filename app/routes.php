@@ -11,6 +11,16 @@
 |
 */
 
+
+Route::get('/get/report/balancesheet', array(
+		'as'	=>	'getBalanceSheet',
+		'uses'	=>	'ReportController@getBalanceSheet'
+));
+Route::get('/get/report/test', array(
+		'as'	=>	'getBalanceTest',
+		'uses'	=>	'ReportController@test'
+));
+
 Route::get('/', function()
 {
 	return View::make('hello');
