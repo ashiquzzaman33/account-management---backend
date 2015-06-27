@@ -14,7 +14,7 @@ class CreateAccountsTable extends Migration {
 	{
 		Schema::create("accounts", function($table){
 			 $table->bigIncrements('id');
-			 $table->string("name");
+			 $table->string("name")->unique();
 			 $table->bigInteger("account_type")->unsigned();
 			 $table->bigInteger("parent")->unsigned()->default(0);
 			 $table->string("description");

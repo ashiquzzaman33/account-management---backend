@@ -24,49 +24,17 @@ class ReportController extends BaseController {
 		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
 	}
 	public function getBalanceSheet(){
-		$starttime = microtime(true);
-
-
-
-
-		$firstChild = Utilities::getChildrensName(1);
-		$Object = new stdClass();
 		$array = array();
-
-		foreach ($firstChild as $child) {
-			$secondChild = Utilities::getChildrensName($child->id);
-			$fObject = new stdClass();
-			$fObject->name = $child->name;
-			$fBalance = Utilities::getCurrentBalance($child->id);
-			$fArray = array();
-			foreach ($secondChild as $sChild) {
-				$thirdChild = Utilities::getChildrensName($sChild->id);
-				$sObject = new stdClass();
-				$sObject->name = $sChild->name;
-				$tArray = array();
-				$sBalance = Utilities::getCurrentBalance($sChild->id);
-				foreach ($thirdChild as $tChild) {
-						$tObj = new stdClass();
-						$tObj->name = $tChild->name;
-						$tObj->balance = Utilities::childBalance($tChild->id);
-						$sBalance+= $tObj->balance;
-						$tArray[] = $tObj;
-				}
-				$sObject->balance = $sBalance;
-				$fBalance += $sObject->balance;
-				$sObject->child = $tArray;
-				$fArray[] = $sObject;
-				//return json_encode($sObject);
-			}
-			$fObject->balance = $fBalance;
-			$fObject->child = $fArray;
-			$array[] = $fObject;
+		for($i=7; $i<=57; $i++){
+			$Object = new stdClass();
+			$Object->id = $i;
+			$Object->totalBalance = Utilities::getCurrentBalance($i);
+			$array[] = $Object;
 		}
-
-	$endtime = microtime(true);
-	$duration = $endtime - $starttime;
-		return json_encode($array)."   ".$duration." microseconds";
+		return json_encode($array);
 	}
+
+
 	public function test(){
 		$starttime = microtime(true);
 		$res = Utilities::childBalance(1);
