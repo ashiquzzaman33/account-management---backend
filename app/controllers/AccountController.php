@@ -7,6 +7,10 @@
 			$acc = DB::table('accounts')->get();
 			return json_encode($acc);
 		}
+		public function getAccountType()
+		{
+			return json_encode(DB::table('account_types')->get());
+		}
 		public function addAccount(){
 			$name 				=	Input::get('name');
 			$parent 			=	Input::get('parent');

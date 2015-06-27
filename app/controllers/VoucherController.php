@@ -5,9 +5,10 @@
 
 		public function addVoucher(){
 				$location_id 	= 	Input::get("location_id");
-				$voucher_id		=	Input::get("voucher_id");
+				$voucher_id		=	$this->nextVoucherNo();
 				$date			=	Input::get("date");
 				$narration		=	Input::get("narration");
+				$projectOrCnf   =	Input::get("projectOrCnf");
 				//Json with account_id, amount, remark
 				$transactions	=	json_decode(Input::get("transaction"))->transaction;
 
@@ -57,10 +58,11 @@
 								$baseA = 2;
 
 						    DB::table('vouchers')->insert(array(
-									'id' 			=>	$voucher_id,
-									'date' 			=>	$date,
+									'id' 				=>	$voucher_id,
+									'date' 				=>	$date,
+									'project_or_cnf_or_lc'	=>	$projectOrCnf,
 									'location_id' 		=>	$location_id,
-									'narration'		=>	$narration
+									'narration'			=>	$narration
 								)
 							);
 

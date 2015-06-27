@@ -1,50 +1,23 @@
-expense voucher
-=============================
-[
-    {
-        "date": "2015-06-17 00:00:00",
-        "location_id": 1,
-        "party_name": "mr.abc",
-        "party_address": "telegati",
-        "middle_man_name": "mr.bal",
-        "middle_man_address": "fultola",
-        "expense": [
-            {
-                "expense_description": "aaaaaa",
-                "amount": 500
-            },
-            {
-                "expense_description": "bbbbbb",
-                "amount": 500
-            }
-        ],
-        "total": 2000,
-        "total_in_word": "Two thousands taka only"
-    }
-]
-
-
-
-
-deposit voucher
+﻿
+Done deposit voucher
 =============================
 date, location_id, description, party_name, bank_acc_no, branch, address, payment_type, amount, amount_in_word, note
 
 
 20-06-2015
 ================
-1. create project (project_name, party_name, party_address, starting_date, operation_date, dimilish_date, project_location)
-2. get All projects
+Done 1. create project (project_name, party_name, party_address, starting_date,     operation_date, dimilish_date, project_location)
+Done 2. get All projects
 
 
 27-06-2015
 ================
-১। new voucher create করার সময় voucher_id তুই define করবি। আমি voucher_id দেব না। 
+Done*১। new voucher create করার সময় voucher_id তুই define করবি। আমি voucher_id দেব না।    Double 
+    Submit Should check by Raju(ex: clear the field after submit if success)
     আর transaction  টা কি project/lc/c&f ের জন্য? if true then which project/lc/c&f.
-২। Route for  getting Account types
-৩। any ledger report date wise
-4. account create করার সময় account type add করতে হবে। 
-5. create lc and C&F. check voucher_sample.xlsx for fields.
+Done **২। Route for  getting Account types
+Done ৩। any ledger report date wise
+Done 5. create lc and C&F. check voucher_sample.xlsx for fields.
 
 
 

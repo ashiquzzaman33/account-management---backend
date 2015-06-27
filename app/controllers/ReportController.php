@@ -17,6 +17,12 @@ class ReportController extends BaseController {
 		return json_encode($a);	
 		
 	}
+	public function getLedger(){
+		$account_id 	= Input::get("account_id");
+		$start_date 	= Input::get("start_date");
+		$end_date	= Input::get("end_date");
+		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
+	}
 	public function getBalanceSheet(){
 		$starttime = microtime(true);
 
