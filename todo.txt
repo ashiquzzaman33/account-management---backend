@@ -37,7 +37,14 @@ date, location_id, description, party_name, bank_acc_no, branch, address, paymen
 2. get All projects
 
 
-
+27-06-2015
+================
+১। new voucher create করার সময় voucher_id তুই define করবি। আমি voucher_id দেব না। 
+    আর transaction  টা কি project/lc/c&f ের জন্য? if true then which project/lc/c&f.
+২। Route for  getting Account types
+৩। any ledger report date wise
+4. account create করার সময় account type add করতে হবে। 
+5. create lc and C&F. check voucher_sample.xlsx for fields.
 
 
 
