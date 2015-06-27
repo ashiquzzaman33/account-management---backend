@@ -46,6 +46,10 @@ Route::post('/add/account_type', array(
 		'as'	=>	'addAccountType',
 		'uses'	=>	'FilterController@addAccountType'
 ));
+Route::get('/get/account_type', array(
+		'as'	=>	'getAccountType',
+		'uses'	=>	'FilterController@getAccountType'
+));
 
 Route::get('/get/locations', array(
 		'as'	=>	'getLocations',
