@@ -10,8 +10,47 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+/**********************Project*******************/
+Route::get('/add/project', array(
+		'as'	=>	'createProject',
+		'uses'	=>	'ProjectController@createProject'
+));
+
+Route::get('/get/project/all', array(
+		'as'	=>	'getAllProject',
+		'uses'	=>	'ProjectController@getAllProject'
+));
+
+/******************CnF************************/
+
+Route::get('/add/cnf', array(
+		'as'	=>	'createCnF',
+		'uses'	=>	'CnFController@createCnF'
+));
+Route::get('/get/cnf/all', array(
+		'as'	=>	'getAllCnF',
+		'uses'	=>	'CnFController@getAllCnF'
+));
+/*******************LC***************************/
+Route::get('/add/lc', array(
+		'as'	=>	'createLC',
+		'uses'	=>	'LCController@createLC'
+));
+Route::get('/get/lc/all', array(
+		'as'	=>	'getAllLC',
+		'uses'	=>	'LCController@getAllLC'
+));
+/*****************DEPOSIT VOUCHER***********/
+Route::get('/add/deposit/voucher', array(
+		'as'	=>	'createDepositVoucher',
+		'uses'	=>	'DepositVoucherController@createDepositVoucher'
+));
 
 
+Route::get('/get/report/ledger', array(
+		'as'	=>	'getLedger',
+		'uses'	=>	'ReportController@getLedger'
+));
 Route::get('/get/report/balancesheet', array(
 		'as'	=>	'getBalanceSheet',
 		'uses'	=>	'ReportController@getBalanceSheet'
@@ -21,6 +60,10 @@ Route::get('/get/report/test', array(
 		'uses'	=>	'ReportController@test'
 ));
 
+Route::get('/get/account/type', array(
+		'as'	=>	'getAccountType',
+		'uses'	=>	'AccountController@getAccountType'
+));
 Route::get('/', function()
 {
 	return View::make('hello');

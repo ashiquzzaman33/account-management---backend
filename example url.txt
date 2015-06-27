@@ -1,9 +1,15 @@
 		Add Something
 *********************************************
 *Voucher
-	http://localhost/acc/public/add/voucher?location_id=1&voucher_id=2&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":3,"remark":"This is a test for account 4"},{"amount":1000,"account_id":5,"remark":"This is a test for account 5"},{"amount":555,"account_id":6,"remark":"This is a test for account 6"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
+	http://localhost/acc/public/add/voucher?location_id=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":3,"remark":"This is a test for account 4"},{"amount":1000,"account_id":5,"remark":"This is a test for account 5"},{"amount":555,"account_id":6,"remark":"This is a test for account 6"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
 *Voucher Type
 	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
+*Add Project
+        http://localhost/acc/public/add/project?name=TestProjec3&investment=6666.34&related_party=Squire Ltd&starting_date=2015-06-23&operation_date=2015-06-25&dimilish_date=2015-06-30&type=Vehicle&location_id=1
+*Add LC
+    http://localhost/acc/public/add/lc?lc_number=2&party_name=Jobbar and Co&party_bank_name=Rupaly Bank&party_address=Fultola&our_bank_name=Sonali Bank&lc_amount=43534.234&initialing_date=2015-6-10&starting_date=2015-6-10&dimilish_date=2015-6-10&type=Pat croi
+*Add CnF
+    http://localhost/acc/public/add/cnf?party_name=Hi&party_address=Badam%20Tola&location_id=1
 *Account type
 	http://localhost/acc/public/add/account_type?type_name=Test&details=Test
 *Account
@@ -34,14 +40,26 @@
         "total_in_word": "Two thousands taka only"
     }
 ]
+*Add Deposit Voucher:
+    http://localhost/acc/public/add/deposit/voucher?date=2015-12-25&location_id=1&description=none&party_name=Party1&bank_acc_no=1223&branch=khulna&address=Daulatpur&payment_type=taka&amount=2344&amount_in_word=Two thousand&note=No note found
 
-**********************************************
+************************GET SOMETHING**********************
 *Next Voucher No
 	http://localhost/acc/public/get/next/voucherno
+*All Project
+    http://localhost/acc/public/get/project/all
+*All CNF
+    http://localhost/acc/public/get/cnf/all
+*All LC
+    http://localhost/acc/public/get/lc/all
+*Ledger of Account
+    http://localhost/acc/public/get/report/ledger?account_id=7&start_date=2015-06-19&end_date=2015-06-30
 *Locations
 	http://localhost/acc/public/get/locations
 *Accounts
 	http://localhost/acc/public/get/accounts
+*Account Type:
+    http://localhost/acc/public/get/account/type
 
 
 *****************REPORT*********************
