@@ -20,6 +20,10 @@ Done ৩। any ledger report date wise
 Done 5. create lc and C&F. check voucher_sample.xlsx for fields.
 
 
+/**********************/
+Voucher type add করতে হবেnew Voucher এ
+
+
 
 
 
