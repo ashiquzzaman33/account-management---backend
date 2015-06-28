@@ -11,7 +11,7 @@
 |
 */
 /**********************Project*******************/
-Route::get('/add/project', array(
+Route::post('/add/project', array(
 		'as'	=>	'createProject',
 		'uses'	=>	'ProjectController@createProject'
 ));
@@ -23,7 +23,7 @@ Route::get('/get/project/all', array(
 
 /******************CnF************************/
 
-Route::get('/add/cnf', array(
+Route::post('/add/cnf', array(
 		'as'	=>	'createCnF',
 		'uses'	=>	'CnFController@createCnF'
 ));
@@ -32,7 +32,7 @@ Route::get('/get/cnf/all', array(
 		'uses'	=>	'CnFController@getAllCnF'
 ));
 /*******************LC***************************/
-Route::get('/add/lc', array(
+Route::post('/add/lc', array(
 		'as'	=>	'createLC',
 		'uses'	=>	'LCController@createLC'
 ));
