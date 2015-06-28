@@ -2,10 +2,7 @@
 
 class ReportController extends BaseController {
 
-	public function getBalanceOfAccount()
-	{
-		return Utilities::getCurrentBalance(Input::get("id"));
-	}
+
 	public function getVoucher()
 	{
 		$v_id = Input::get("voucher_id");
@@ -35,7 +32,12 @@ class ReportController extends BaseController {
 		for($i=7; $i<=57; $i++){
 			$Object = new stdClass();
 			$Object->id = $i;
-			$Object->totalBalance = Utilities::getCurrentBalance($i, $date);
+			$childs = Utilities::getParentListFromAllChilds($i);
+			$balance = Utilities::getCurrentBalance($i, $date);
+			foreach ($childs as $child) {
+				$balance = $balance + Utilities::getCurrentBalance($child, $date);
+			}
+			$Object->totalBalance = $balance;
 			$array[] = $Object;
 		}
 		return json_encode($array);
@@ -43,11 +45,12 @@ class ReportController extends BaseController {
 
 
 	public function test(){
-		$starttime = microtime(true);
+		return Utilities::getParentListFromAllChilds(2);
+	/*	$starttime = microtime(true);
 		$res = Utilities::childBalance(1);
 		$endtime = microtime(true);
 		$duration = $endtime - $starttime;
-		return $res."   ".$duration."  microseconds";
+		return $res."   ".$duration."  microseconds";*/
 	}
 
 }

@@ -31,7 +31,7 @@ class Utilities{
 		return $arr;
 	}
 
-	private static function getParentList($acc_id){
+	public static function getParentList($acc_id){
 		$arr = array();
 		while(!is_null(($var =  DB::table('childrens')->select('parent')->where('children', $acc_id)->pluck('parent'))))
 		{
@@ -45,10 +45,7 @@ class Utilities{
 
 	}
 
-	public static function getChildrensName($acc_id){
-		return DB::select(DB::raw("SELECT accounts.id, accounts.name FROM accounts JOIN (SELECT children FROM childrens WHERE
-		 parent=".$acc_id." AND children !=".$acc_id.") AS  New WHERE New.children=accounts.id;"));
-	}
+
 	public static function getProjectOrCnFOrLcType($id){
 		$ob = new stdClass();
 		if($id>Constant::LC_BASE){
@@ -66,6 +63,8 @@ class Utilities{
 		} 
 		return json_encode($ob);    
 	}
+
+
 
 
 

@@ -7,10 +7,7 @@
 			$acc = DB::table('accounts')->get();
 			return json_encode($acc);
 		}
-		public function getAccountType()
-		{
-			return json_encode(DB::table('account_types')->get());
-		}
+
 		public function addAccount(){
 			$name 				=	Input::get('name');
 			$parent 			=	Input::get('parent');
@@ -20,7 +17,9 @@
 			$location			= 	Input::get("location_id");
 
 			$acc_id	=	$this->nextAccountNo();
-
+			if($parent<7){
+				throw new Exception("You can not add child to main head", 1);
+			}
 			DB::beginTransaction();
 			$status 	= "Success";
 			$message 	= " ";

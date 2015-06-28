@@ -1,7 +1,7 @@
 		Add Something
 *********************************************
 *Voucher
-	http://localhost/acc/public/add/voucher?location_id=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":10,"remark":"This is a test for account 10"},{"amount":1000,"account_id":20,"remark":"This is a test for account 20"},{"amount":555,"account_id":19,"remark":"This is a test for account 19"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
+	http://localhost/acc/public/add/voucher?location_id=1&voucher_type=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":60,"remark":"This is a test for account 60"},{"amount":1000,"account_id":59,"remark":"This is a test for account 59"},{"amount":555,"account_id":58,"remark":"This is a test for account 58"},{"amount":-2789,"account_id":61,"remark":"This is a test for account 7"}]}
 *Voucher Type
 	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
 *Add Project
@@ -60,6 +60,8 @@
 	http://localhost/acc/public/get/accounts
 *Account Type:
     http://localhost/acc/public/get/account/type
+*Voucher Type:
+    http://localhost/acc/public/get/voucher/type
 
 
 *****************REPORT*********************

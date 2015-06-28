@@ -31,12 +31,14 @@
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
 		}
-
-		public function getAccountType(){
-			$account_types = DB::table('account_types')->get();
-			return json_encode($account_types);
+		public function getAccountType()
+		{
+			return json_encode(DB::table('account_types')->get());
 		}
-
+		public function getVoucherType()
+		{
+			return json_encode(DB::table('voucher_types')->get());
+		}
 		public function addVoucherType(){
 			$type 		= Input::get("type_name");
 			$details 	= Input::get("details");
