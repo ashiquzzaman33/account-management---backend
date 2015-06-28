@@ -73,7 +73,12 @@ Route::get('/get/report/test', array(
 
 Route::get('/get/account/type', array(
 		'as'	=>	'getAccountType',
-		'uses'	=>	'AccountController@getAccountType'
+		'uses'	=>	'FilterController@getAccountType'
+));
+
+Route::get('/get/voucher/type', array(
+		'as'	=>	'getVoucherType',
+		'uses'	=>	'FilterController@getVoucherType'
 ));
 Route::get('/', function()
 {

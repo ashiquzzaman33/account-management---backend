@@ -9,6 +9,7 @@
 				$date			=	Input::get("date");
 				$narration		=	Input::get("narration");
 				$projectOrCnf   =	Input::get("projectOrCnf");
+				$voucher_type	=	Input::get("voucher_type");
 				
 				$transactions	=	json_decode(Input::get("transaction"))->transaction;
 
@@ -26,11 +27,16 @@
 				
 					if($trans->amount<0){
 						$baseAccCredit = $trans->account_id;
+						if($baseAccCredit<58)
+							throw new Exception("You can not insert data in Main Head Ledger! acc_id:  ".$baseAccCredit, 1);
 						$creditCounter++;
 						$creditSum = $creditSum + (-1*$trans->amount);
 					}else{
 						$baseAccDebit = $trans->account_id;
 						$debitCounter++;
+						if($baseAccDebit<58)
+								throw new Exception("You can not insert data in Main Head Ledger! acc_id:  ".$baseAccDebit, 1);
+
 						$debitSum = $debitSum + $trans->amount;
 					}
 				}
@@ -72,7 +78,8 @@
 									'date' 					=>	$date,
 									'project_or_cnf_or_lc'	=>	$projectOrCnf,
 									'location_id' 			=>	$location_id,
-									'narration'				=>	$narration
+									'narration'				=>	$narration,
+									'voucher_type'			=>	$voucher_type
 								)
 							);
 
