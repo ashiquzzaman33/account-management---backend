@@ -2,53 +2,71 @@
 
 class Utilities{
 
-	public static function getCurrentBalance($acc_id){
+	public static function getCurrentBalance($acc_id, $dt=null){
+		//query:  SELECT general_accounts.id, balance FROM general_accounts JOIN (SELECT max(general_accounts.`id`) AS id FROM `general_accounts` JOIN (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date >= '2015-06-10 00:00:00') x ON general_accounts.voucher_id = x.id WHERE general_accounts.account_id = 7)P ON general_accounts.id = P.id;
+		//$var =  DB::select(DB::raw("SELECT id, account_id, balance FROM general_accounts WHERE id  IN ( SELECT MAX(id) as id FROM general_accounts WHERE account_id = ".$acc_id.")"));	
 		
-		$var =  DB::select(DB::raw("SELECT id, account_id, balance FROM general_accounts WHERE id  IN ( SELECT MAX(id) as id FROM general_accounts WHERE account_id = ".$acc_id.")"));	
-		return $var[0]->balance;	
+		$date = null;
+		if($dt!=null){
+			$date = $dt;
+		}else{
+		 	$date = '\'00-00-00 00:00:00\'';
+		 }
+		// return $date."  ". $acc_id;
+		$var =  DB::select(DB::raw(
+			"SELECT general_accounts.id,
+			 balance FROM general_accounts JOIN 
+			 (SELECT max(general_accounts.`id`) AS id FROM `general_accounts` JOIN
+			  (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date >= ".$date.") 
+			  x ON general_accounts.voucher_id = x.id WHERE general_accounts.account_id = ".$acc_id.") P
+			   ON general_accounts.id = P.id;"));	
+		return isset($var[0])? $var[0]->balance: 0;	
 	}
-	public static function getChildrensId($acc_id){
-		$var =  DB::select(DB::raw("SELECT children FROM childrens WHERE parent=".$acc_id." AND children !=".$acc_id));
+	public static function getParentListFromAllChilds($acc_id){
+		$var = DB::table("all_childs")->select("children")->where('parent', $acc_id)->get();
 		$arr = array();
 		foreach ($var as $v) {
 			$arr[] = $v->children;
 		}
 		return $arr;
 	}
+
+	private static function getParentList($acc_id){
+		$arr = array();
+		while(!is_null(($var =  DB::table('childrens')->select('parent')->where('children', $acc_id)->pluck('parent'))))
+		{
+			if($var==1)
+				break;
+			$arr [] = $var;
+			$acc_id = $var;
+			
+		}
+		return $arr;
+
+	}
+
 	public static function getChildrensName($acc_id){
 		return DB::select(DB::raw("SELECT accounts.id, accounts.name FROM accounts JOIN (SELECT children FROM childrens WHERE
 		 parent=".$acc_id." AND children !=".$acc_id.") AS  New WHERE New.children=accounts.id;"));
 	}
-	private static function getRecursiveChildren($acc_id){
-		$res = Utilities::getChildrensId($acc_id);
-		$size = count($res);
-		$temp = array();
-		if($size>0)
-		{
+	public static function getProjectOrCnFOrLcType($id){
+		$ob = new stdClass();
+		if($id>Constant::LC_BASE){
+			$ob->type = "LC";
+			$ob->id   = $id - Constant::LC_BASE;			
+		}else if($id>Constant::CNF_BASE){
+			$ob->type = "CNF";
+			$ob->id   = $id - Constant::CNF_BASE;
+		}else if($id>Constant::PROJECT_BASE){
+			$ob->type = "PROJECT";
+			$ob->id   = $id - Constant::PROJECT_BASE;
+		}else{
+			$ob->type = "NONE";
+			$ob->id = 0;
+		} 
+		return json_encode($ob);    
+	}
 
-			foreach ($res as $r) 
-			{
-				$temp = array_merge($temp, Utilities::getRecursiveChildren($r));
-			}
-		}
-		return array_merge($res, $temp);
-	}
-	public static function childBalance($acc_id){
-		$acc_id = 1;
-		$arr = Utilities::getChildrensRecursively($acc_id);
-		$len = count($arr);
-		$bal = Utilities::getCurrentBalance($acc_id);
-		$ch = array();
-		for($i=0; $i<$len; $i++) {
-			$bal += Utilities::getCurrentBalance($arr[$i]);
-		}
-		return $bal;
-	}
-	private static function getChildrensRecursively($acc_id){
-		$arr =  Utilities::getRecursiveChildren($acc_id);
-		$arr = array_unique($arr);
-		sort($arr);
-		return $arr;
-	}
+
 
 }

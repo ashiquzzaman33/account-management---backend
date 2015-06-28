@@ -33,7 +33,7 @@ class ProjectController extends BaseController {
 	}
 	public function getAllProject()
 	{
-		return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `investment`, `related_party`, `starting_date`, `operation_date`, `dimilish_date`, `type`, `location_id`, `alarm` FROM `projects` WHERE 1")));
+		return json_encode(DB::select(DB::raw("SELECT (id+".Constant::PROJECT_BASE.") as id, `name`, `investment`, `related_party`, `starting_date`, `operation_date`, `dimilish_date`, `type`, `location_id`, `alarm` FROM `projects` WHERE 1")));
 
 	}
 

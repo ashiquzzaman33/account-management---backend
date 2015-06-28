@@ -47,14 +47,25 @@ Route::get('/add/deposit/voucher', array(
 ));
 
 
-Route::get('/get/report/ledger', array(
+
+/***************Report Section**************/
+
+Route::get('/report/ledger', array(
 		'as'	=>	'getLedger',
 		'uses'	=>	'ReportController@getLedger'
 ));
-Route::get('/get/report/balancesheet', array(
+Route::get('report/balancesheet', array(
 		'as'	=>	'getBalanceSheet',
 		'uses'	=>	'ReportController@getBalanceSheet'
 ));
+Route::get('/report/voucher', array(
+		'as'	=>	'getVoucher',
+		'uses'	=>	'ReportController@getVoucher'
+));
+
+
+
+
 Route::get('/get/report/test', array(
 		'as'	=>	'getBalanceTest',
 		'uses'	=>	'ReportController@test'
@@ -73,7 +84,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::post('/add/account', array(
+Route::get('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -110,10 +121,7 @@ Route::get('/report/get/balance', array(
 		'as'	=>	'getBalance',
 		'uses'	=>	'ReportController@getBalanceOfAccount '
 ));
-Route::get('/report/get/voucher', array(
-		'as'	=>	'getVoucher',
-		'uses'	=>	'ReportController@getVoucher'
-));
+
 Route::post('/edit/location', array(
 		'as'	=>	'editLocation',
 		'uses'	=>	'LocationController@editLocation'

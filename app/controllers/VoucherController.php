@@ -9,7 +9,7 @@
 				$date			=	Input::get("date");
 				$narration		=	Input::get("narration");
 				$projectOrCnf   =	Input::get("projectOrCnf");
-				//Json with account_id, amount, remark
+				
 				$transactions	=	json_decode(Input::get("transaction"))->transaction;
 
 
@@ -50,6 +50,16 @@
 					DB::beginTransaction();
 					try {
 
+							$type = json_decode(Utilities::getProjectOrCnFOrLcType($projectOrCnf));
+							$type->type;
+							$type->id;
+							//TODO
+							///
+							//
+							//
+							//TODO
+
+
 							$baseA = 0;
 							if($debitCounter==1){
 								$baseA = 1;
@@ -58,11 +68,11 @@
 								$baseA = 2;
 
 						    DB::table('vouchers')->insert(array(
-									'id' 				=>	$voucher_id,
-									'date' 				=>	$date,
+									'id' 					=>	$voucher_id,
+									'date' 					=>	$date,
 									'project_or_cnf_or_lc'	=>	$projectOrCnf,
-									'location_id' 		=>	$location_id,
-									'narration'			=>	$narration
+									'location_id' 			=>	$location_id,
+									'narration'				=>	$narration
 								)
 							);
 

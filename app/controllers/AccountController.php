@@ -19,21 +19,24 @@
 			$opening_balance	= 	Input::get('opening_balance');
 			$location			= 	Input::get("location_id");
 
+			$acc_id	=	$this->nextAccountNo();
+
 			DB::beginTransaction();
 			$status 	= "Success";
 			$message 	= " ";
 			try {
+				
 				    DB::table('accounts')->insert(array(
+				    		'id'			=>	$acc_id,
 							'name' 			=> $name,
 							'parent' 		=> $parent,
 							'account_type'	=>  $account_type,
 							'description' 	=> $description
 						)
 					);
-
-					$account_id = DB::table('accounts')->select('id')->where('name', '=', $name)->first();
+				    
 					DB::table('general_accounts')->insert(array(
-							'account_id'			=>	$account_id->id,
+							'account_id'			=>	$acc_id,
 							'voucher_id' 			=> 	1,
 							'against_account_id' 	=> 	$parent,
 							'dr'					=>	0,
@@ -43,9 +46,24 @@
 
 						)
 					);
+					
+					DB::table('all_childs')->insert(array(
+							'parent'			=>	$parent,
+							'children' 			=> 	$acc_id
+						)
+					);
+					$parentList = Utilities::getParentList($parent);
+
+					foreach ($parentList as $par) {
+							DB::table('all_childs')->insert(array(
+								'parent'			=>	$par,
+								'children' 			=>  $acc_id
+								)
+						);
+					}
 					DB::table('childrens')->insert(array(
 							'parent'			=>	$parent,
-							'children' 			=> 	$account_id->id
+							'children' 			=> 	$acc_id
 						)
 					);
 					DB::commit();
@@ -59,6 +77,8 @@
 			}
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
+			
+
 		}
 
 
@@ -132,6 +152,20 @@
 
 						)
 					);
+					DB::table('all_childs')->insert(array(
+							'parent'			=>	$parent,
+							'children' 			=> 	$id
+						)
+					);
+					$parentList = Utilities::getParentList($parent);
+
+					foreach ($parentList as $par) {
+							DB::table('all_childs')->insert(array(
+								'parent'			=>	$par,
+								'children' 			=>  $id
+								)
+						);
+					}
 					DB::table('childrens')->insert(array(
 							'parent'			=>	$parent,
 							'children' 			=> 	$id
@@ -161,6 +195,15 @@
 				   throw $e;
 				    
 			}
+		}
+		public function getParent(){
+			return Utilities::getParentList(Input::get("acc_id"));
+		}
+		public function getParentList1(){
+			return Utilities::getParentListFromAllChilds(Input::get("acc_id"));
+		}
+		public function nextAccountNo(){
+			return DB::table('accounts')->max('id')+1;
 		}
 	}
  ?>

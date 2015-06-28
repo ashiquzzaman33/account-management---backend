@@ -29,7 +29,7 @@ class CnFController extends BaseController {
 	}
 	public function getAllCnF()
 	{
-		return json_encode(DB::select(DB::raw("SELECT `id`, `party_name`, `party_address`, `location_id` FROM `cnfs` WHERE 1")));
+		return json_encode(DB::select(DB::raw("SELECT (id+".Constant::CNF_BASE.") as id, `party_name`, `party_address`, `location_id` FROM `cnfs` WHERE 1")));
 
 	}
 

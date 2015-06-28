@@ -1,7 +1,7 @@
 		Add Something
 *********************************************
 *Voucher
-	http://localhost/acc/public/add/voucher?location_id=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":3,"remark":"This is a test for account 4"},{"amount":1000,"account_id":5,"remark":"This is a test for account 5"},{"amount":555,"account_id":6,"remark":"This is a test for account 6"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
+	http://localhost/acc/public/add/voucher?location_id=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":10,"remark":"This is a test for account 10"},{"amount":1000,"account_id":20,"remark":"This is a test for account 20"},{"amount":555,"account_id":19,"remark":"This is a test for account 19"},{"amount":-2789,"account_id":7,"remark":"This is a test for account 7"}]}
 *Voucher Type
 	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
 *Add Project
@@ -44,6 +44,7 @@
     http://localhost/acc/public/add/deposit/voucher?date=2015-12-25&location_id=1&description=none&party_name=Party1&bank_acc_no=1223&branch=khulna&address=Daulatpur&payment_type=taka&amount=2344&amount_in_word=Two thousand&note=No note found
 
 ************************GET SOMETHING**********************
+
 *Next Voucher No
 	http://localhost/acc/public/get/next/voucherno
 *All Project
@@ -52,8 +53,7 @@
     http://localhost/acc/public/get/cnf/all
 *All LC
     http://localhost/acc/public/get/lc/all
-*Ledger of Account
-    http://localhost/acc/public/get/report/ledger?account_id=7&start_date=2015-06-19&end_date=2015-06-30
+
 *Locations
 	http://localhost/acc/public/get/locations
 *Accounts
@@ -63,8 +63,13 @@
 
 
 *****************REPORT*********************
+*Ledger of Account
+    http://localhost/acc/public/report/ledger?account_id=7&start_date=2015-06-19&end_date=2015-06-30
+*Balance Sheet by Date
+    http://localhost/acc/public/report/balancesheet?date="2015-5-5"
+    http://localhost/acc/public/report/balancesheet
 *Get Voucher by id
-	http://localhost/acc/public/report/get/voucher?voucher_id=2
+	http://localhost/acc/public/report/voucher?voucher_id=2
 
 *******************EDIT SOMETHING************
 *Edit Location:
