@@ -35,7 +35,7 @@ class LCController extends BaseController {
 	}
 	public function getAllLC()
 	{
-		return json_encode(DB::select(DB::raw("SELECT `lc_number`, `party_name`, `party_bank_name`, `party_address`, `our_bank_name`, `lc_amount`, `initialing_date`, `starting_date`, `dimilish_date`, `type` FROM `lcs` WHERE 1")));
+		return json_encode(DB::select(DB::raw("SELECT (lc_number+".Constant::LC_BASE.") as lc_number, `party_name`, `party_bank_name`, `party_address`, `our_bank_name`, `lc_amount`, `initialing_date`, `starting_date`, `dimilish_date`, `type` FROM `lcs` WHERE 1")));
 	}
 
 }

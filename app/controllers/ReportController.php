@@ -24,11 +24,18 @@ class ReportController extends BaseController {
 		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
 	}
 	public function getBalanceSheet(){
+		$date = null;
+		if(Input::get("date")!=null){
+			$date = Input::get("date");
+		}else
+		 {
+		 	$date = '\'00-00-00 00:00:00\'';
+		 }
 		$array = array();
 		for($i=7; $i<=57; $i++){
 			$Object = new stdClass();
 			$Object->id = $i;
-			$Object->totalBalance = Utilities::getCurrentBalance($i);
+			$Object->totalBalance = Utilities::getCurrentBalance($i, $date);
 			$array[] = $Object;
 		}
 		return json_encode($array);

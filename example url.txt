@@ -65,7 +65,8 @@
 *****************REPORT*********************
 *Ledger of Account
     http://localhost/acc/public/report/ledger?account_id=7&start_date=2015-06-19&end_date=2015-06-30
-*Balance Sheet
+*Balance Sheet by Date
+    http://localhost/acc/public/report/balancesheet?date="2015-5-5"
     http://localhost/acc/public/report/balancesheet
 *Get Voucher by id
 	http://localhost/acc/public/report/voucher?voucher_id=2
