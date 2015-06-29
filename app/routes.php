@@ -21,6 +21,7 @@ Route::get('/get/project/all', array(
 		'uses'	=>	'ProjectController@getAllProject'
 ));
 
+
 /******************CnF************************/
 
 Route::post('/add/cnf', array(
@@ -62,6 +63,12 @@ Route::get('/report/voucher', array(
 		'as'	=>	'getVoucher',
 		'uses'	=>	'ReportController@getVoucher'
 ));
+
+Route::get('/report/party/details', array(
+		'as'	=>	'getPartyWiseDetail',
+		'uses'	=>	'ReportController@getPartyWiseDetail'
+));
+
 /**********************Party Section**********************/
 
 Route::get('/add/party', array(
@@ -69,11 +76,15 @@ Route::get('/add/party', array(
 		'uses'	=>	'PartyController@createParty'
 ));
 
-
+Route::get('/get/party', array(
+		'as'	=>	'getParty',
+		'uses'	=>	'PartyController@getParties'
+));
 Route::get('/get/report/test', array(
 		'as'	=>	'getBalanceTest',
 		'uses'	=>	'ReportController@test'
 ));
+
 
 Route::get('/get/account/type', array(
 		'as'	=>	'getAccountType',

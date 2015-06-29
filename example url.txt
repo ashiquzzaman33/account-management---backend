@@ -64,6 +64,16 @@
     http://localhost/acc/public/get/account/type
 *Voucher Type:
     http://localhost/acc/public/get/voucher/type
+*Party
+    http://localhost/acc/public/get/party
+*Party by name:
+    http://localhost/acc/public/get/party?party_name=raju
+*Party By Company name:
+     http://localhost/acc/public/get/party?company_name=Unit
+*Party By Address:
+     http://localhost/acc/public/get/party?address=Badamtola
+*Party By Id:
+    http://localhost/acc/public/get/party?id=1
 
 
 *****************REPORT*********************
@@ -74,6 +84,8 @@
     http://localhost/acc/public/report/balancesheet
 *Get Voucher by id
 	http://localhost/acc/public/report/voucher?voucher_id=2
+*Party Wise Report
+    http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
 
 *******************EDIT SOMETHING************
 *Edit Location:

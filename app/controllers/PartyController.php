@@ -44,6 +44,22 @@ class PartyController extends BaseController {
 			}
 			return json_encode(array("Status" => "Success", "Message" => "".$message));
 	}
+	public function getParties(){
+		if(Input::get("id")!=null){
+			return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE id=".Input::get("id").";")));
+		}else if(Input::get("party_name")!=null){
+			return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE name LIKE '%".Input::get("party_name")."%';")));
+		}else if(Input::get("company_name")!=null){
+			return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE company_name LIKE '%".Input::get("company_name")."%';")));
+		}else if(Input::get("address")!=null){
+			return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE company_address LIKE '%".Input::get("address")."%' OR address LIKE '%".Input::get("address")."';")));
+		}else
+		return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE 1")));
+	}
+	public static function getPartyDetails($id){
+		return json_encode(DB::select(DB::raw("SELECT `id`, `name`, `address`, `mobile`, `email`, `image_url`, `company_name`, `company_address`, `account_id` FROM `parties` WHERE id=".$id.";")));
+	}
+
 	public static function createAccount($name, $parent, $account_type, $description, $opening_balance, $location, $id=null){
 
 
