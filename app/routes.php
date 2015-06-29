@@ -62,8 +62,12 @@ Route::get('/report/voucher', array(
 		'as'	=>	'getVoucher',
 		'uses'	=>	'ReportController@getVoucher'
 ));
+/**********************Party Section**********************/
 
-
+Route::get('/add/party', array(
+		'as'	=>	'addParty',
+		'uses'	=>	'PartyController@createParty'
+));
 
 
 Route::get('/get/report/test', array(
