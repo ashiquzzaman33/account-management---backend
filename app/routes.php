@@ -89,7 +89,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::get('/add/account', array(
+Route::post('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -97,7 +97,7 @@ Route::get('/add/location', array(
 		'as'	=>	'addLocation',
 		'uses'	=>	'LocationController@addLocation'
 ));
-Route::get('/add/voucher_type', array(
+Route::post('/add/voucher_type', array(
 		'as'	=>	'addVoucherType',
 		'uses'	=>	'FilterController@addVoucherType'
 ));
@@ -132,7 +132,7 @@ Route::post('/edit/location', array(
 		'uses'	=>	'LocationController@editLocation'
 ));
 
-Route::get('/edit/account', array(
+Route::post('/edit/account', array(
 		'as'	=>	'editAccount',
 		'uses'	=>	'AccountController@editAccount'
 ));
