@@ -7,16 +7,17 @@
 			$acc = DB::table('accounts')->get();
 			return json_encode($acc);
 		}
-
 		public function addAccount(){
-			$name 				=	Input::get('name');
-			$parent 			=	Input::get('parent');
-			$account_type		=	Input::get('account_type');
-			$description 		=	Input::get('description');
-			$opening_balance	= 	Input::get('opening_balance');
-			$location			= 	Input::get("location_id");
-
-			$acc_id	=	$this->nextAccountNo();
+				$name 				=	Input::get('name');
+				$parent 			=	Input::get('parent');
+				$account_type		=	Input::get('account_type');
+				$description 		=	Input::get('description');
+				$opening_balance	= 	Input::get('opening_balance');
+				$location			= 	Input::get("location_id");
+			return AccountController::createAccount($name, $parent, $account_type, $description, $opening_balance, $location);
+		}
+		public static function createAccount($name, $parent, $account_type, $description, $opening_balance, $location, $id=null){
+			$acc_id	=	AccountController::nextAccountNo();
 			if($parent<7){
 				throw new Exception("You can not add child to main head", 1);
 			}
@@ -37,7 +38,7 @@
 					DB::table('general_accounts')->insert(array(
 							'account_id'			=>	$acc_id,
 							'voucher_id' 			=> 	1,
-							'against_account_id' 	=> 	$parent,
+							'against_account_id' 	=> 	1,
 							'dr'					=>	0,
 							'cr'					=>	0,
 							'balance'				=>	$opening_balance,
@@ -74,10 +75,8 @@
 					$message = $e;					
 				    DB::rollback();
 			}
-			$mss = array("Status" => $status, "Message" => $message);
+			$mss = array("Status" => $status, "Message" => $message, "account_id" => $acc_id);
 			return json_encode($mss);
-			
-
 		}
 
 
@@ -143,7 +142,7 @@
 					DB::table('general_accounts')->insert(array(
 							'account_id'			=>	$id,
 							'voucher_id' 			=> 	1,
-							'against_account_id' 	=> 	$parent,
+							'against_account_id' 	=> 	1,
 							'dr'					=>	0,
 							'cr'					=>	0,
 							'balance'				=>	$opening_balance,
@@ -201,7 +200,7 @@
 		public function getParentList1(){
 			return Utilities::getParentListFromAllChilds(Input::get("acc_id"));
 		}
-		public function nextAccountNo(){
+		public static function nextAccountNo(){
 			return DB::table('accounts')->max('id')+1;
 		}
 	}

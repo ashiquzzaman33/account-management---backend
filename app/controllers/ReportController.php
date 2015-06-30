@@ -20,6 +20,22 @@ class ReportController extends BaseController {
 		$end_date	= Input::get("end_date");
 		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
 	}
+	public function getPartyWiseDetail(){
+		$id = Input::get("party_id");
+		$obj = new stdClass();
+		$obj->partyDetails  =  json_decode(PartyController::getPartyDetails($id));
+		if(count($obj->partyDetails)>0){
+			 $account_id 	= $obj->partyDetails[0]->account_id;
+			$start_date 	= Input::get("start_date");
+			$end_date		= Input::get("end_date");
+			return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
+
+		}else{
+			return "No data";
+		}
+
+	}
+
 	public function getBalanceSheet(){
 		$date = null;
 		if(Input::get("date")!=null){

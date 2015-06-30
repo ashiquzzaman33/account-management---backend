@@ -255,7 +255,7 @@
 					),
 				array(
 						'id'					=>	34,
-						'name'					=>	'trade creditors',
+						'name'					=>	'account payable',
 						'account_type'			=>  1,
 						'parent'				=>	33,
 						'description'			=> 	"Root account table"

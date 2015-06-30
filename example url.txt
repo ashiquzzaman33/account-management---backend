@@ -42,6 +42,8 @@
 ]
 *Add Deposit Voucher:
     http://localhost/acc/public/add/deposit/voucher?date=2015-12-25&location_id=1&description=none&party_name=Party1&bank_acc_no=1223&branch=khulna&address=Daulatpur&payment_type=taka&amount=2344&amount_in_word=Two thousand&note=No note found
+*Add Party
+    http://localhost/acc/public/add/party?party_name=Raju Khan&party_address=Badamtola&party_mobile=017***&party_email=raju@gmail.com&party_image_url=www.b.com/img.jpg&party_company_name=Unitech4U&party_company_addres=badamtola&account_name=raju_pay&is_payble=true&account_type=1&account_description=Hi, htis is&opening_balance=6000&location=1
 
 ************************GET SOMETHING**********************
 
@@ -62,6 +64,16 @@
     http://localhost/acc/public/get/account/type
 *Voucher Type:
     http://localhost/acc/public/get/voucher/type
+*Party
+    http://localhost/acc/public/get/party
+*Party by name:
+    http://localhost/acc/public/get/party?party_name=raju
+*Party By Company name:
+     http://localhost/acc/public/get/party?company_name=Unit
+*Party By Address:
+     http://localhost/acc/public/get/party?address=Badamtola
+*Party By Id:
+    http://localhost/acc/public/get/party?id=1
 
 
 *****************REPORT*********************
@@ -72,6 +84,8 @@
     http://localhost/acc/public/report/balancesheet
 *Get Voucher by id
 	http://localhost/acc/public/report/voucher?voucher_id=2
+*Party Wise Report
+    http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
 
 *******************EDIT SOMETHING************
 *Edit Location:
