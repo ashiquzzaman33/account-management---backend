@@ -69,6 +69,11 @@ Route::get('/report/party/details', array(
 		'uses'	=>	'ReportController@getPartyWiseDetail'
 ));
 
+Route::get('/report/trialbalance', array(
+		'as'	=>	'getTrialBalance',
+		'uses'	=>	'ReportController@getTrialBalance'
+));
+
 /**********************Party Section**********************/
 
 Route::get('/add/party', array(
@@ -156,6 +161,13 @@ Route::get('/add/expense/vouchers', array(
 		'as'	=>	'createExpenseVouchers',
 		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
 ));
-
+Route::get('/update/settings', array(
+		'as'	=>	'updateSettings',
+		'uses'	=>	'SettingsController@postUpdateSettings'
+));
+Route::get('/get/settings', array(
+		'as'	=>	'getSettings',
+		'uses'	=>	'SettingsController@getSettings'
+));
 
 

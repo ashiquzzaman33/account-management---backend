@@ -45,6 +45,10 @@
 *Add Party
     http://localhost/acc/public/add/party?party_name=Raju Khan&party_address=Badamtola&party_mobile=017***&party_email=raju@gmail.com&party_image_url=www.b.com/img.jpg&party_company_name=Unitech4U&party_company_addres=badamtola&account_name=raju_pay&is_payble=true&account_type=1&account_description=Hi, htis is&opening_balance=6000&location=1
 
+*update Settings
+http://localhost/acc/public/update/settings?key=bg&value=aaa
+
+
 ************************GET SOMETHING**********************
 
 *Next Voucher No
@@ -86,6 +90,9 @@
 	http://localhost/acc/public/report/voucher?voucher_id=2
 *Party Wise Report
     http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
+
+*Trial balance
+http://localhost/acc/public/report/trialbalance
 
 *******************EDIT SOMETHING************
 *Edit Location:
