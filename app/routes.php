@@ -161,6 +161,13 @@ Route::get('/add/expense/vouchers', array(
 		'as'	=>	'createExpenseVouchers',
 		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
 ));
-
+Route::get('/update/settings', array(
+		'as'	=>	'updateSettings',
+		'uses'	=>	'SettingsController@postUpdateSettings'
+));
+Route::get('/get/settings', array(
+		'as'	=>	'getSettings',
+		'uses'	=>	'SettingsController@getSettings'
+));
 
 
