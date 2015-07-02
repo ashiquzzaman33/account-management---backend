@@ -87,6 +87,9 @@
 *Party Wise Report
     http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
 
+*Trial balance
+http://localhost/acc/public/report/trialbalance
+
 *******************EDIT SOMETHING************
 *Edit Location:
 	http://localhost/acc/public/edit/location?id=1&name=None%20for%20test&details=Initilize%20for%20test

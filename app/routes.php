@@ -69,6 +69,11 @@ Route::get('/report/party/details', array(
 		'uses'	=>	'ReportController@getPartyWiseDetail'
 ));
 
+Route::get('/report/trialbalance', array(
+		'as'	=>	'getTrialBalance',
+		'uses'	=>	'ReportController@getTrialBalance'
+));
+
 /**********************Party Section**********************/
 
 Route::get('/add/party', array(
