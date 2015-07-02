@@ -69,6 +69,11 @@ Route::get('/report/party/details', array(
 		'uses'	=>	'ReportController@getPartyWiseDetail'
 ));
 
+Route::get('/report/trialbalance', array(
+		'as'	=>	'getTrialBalance',
+		'uses'	=>	'ReportController@getTrialBalance'
+));
+
 /**********************Party Section**********************/
 
 Route::get('/add/party', array(
@@ -104,7 +109,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::get('/add/account', array(
+Route::post('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -112,7 +117,7 @@ Route::get('/add/location', array(
 		'as'	=>	'addLocation',
 		'uses'	=>	'LocationController@addLocation'
 ));
-Route::get('/add/voucher_type', array(
+Route::post('/add/voucher_type', array(
 		'as'	=>	'addVoucherType',
 		'uses'	=>	'FilterController@addVoucherType'
 ));
@@ -147,7 +152,7 @@ Route::post('/edit/location', array(
 		'uses'	=>	'LocationController@editLocation'
 ));
 
-Route::get('/edit/account', array(
+Route::post('/edit/account', array(
 		'as'	=>	'editAccount',
 		'uses'	=>	'AccountController@editAccount'
 ));
@@ -156,6 +161,13 @@ Route::get('/add/expense/vouchers', array(
 		'as'	=>	'createExpenseVouchers',
 		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
 ));
-
+Route::get('/update/settings', array(
+		'as'	=>	'updateSettings',
+		'uses'	=>	'SettingsController@postUpdateSettings'
+));
+Route::get('/get/settings', array(
+		'as'	=>	'getSettings',
+		'uses'	=>	'SettingsController@getSettings'
+));
 
 

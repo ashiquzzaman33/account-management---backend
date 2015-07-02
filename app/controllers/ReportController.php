@@ -18,7 +18,7 @@ class ReportController extends BaseController {
 		$account_id 	= Input::get("account_id");
 		$start_date 	= Input::get("start_date");
 		$end_date	= Input::get("end_date");
-		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `date`;")));
+		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `voucher_id`,`date`;")));
 	}
 	public function getPartyWiseDetail(){
 		$id = Input::get("party_id");
@@ -57,6 +57,22 @@ class ReportController extends BaseController {
 			$array[] = $Object;
 		}
 		return json_encode($array);
+	}
+
+	public function getTrialBalance(){
+		$balance = array();
+		$accounts = DB::table('accounts')->get();
+		foreach ($accounts as $account) {
+			$id = $account->id;
+			$general_acc = DB::select(DB::raw('SELECT balance FROM `general_accounts` WHERE account_id='. $id .' order by id desc limit 1'));
+			array_push($balance, array(
+					'id'		=>	$account->id,
+					'name'		=>	$account->name,
+					'balance'	=>	$general_acc[0]->balance
+				));
+			
+		}
+		return json_encode($balance);
 	}
 
 
