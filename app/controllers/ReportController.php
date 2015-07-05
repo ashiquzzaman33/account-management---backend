@@ -37,6 +37,7 @@ class ReportController extends BaseController {
 	}
 
 	public function getBalanceSheet(){
+
 		$date = null;
 		if(Input::get("date")!=null){
 			$date = Input::get("date");
@@ -44,11 +45,14 @@ class ReportController extends BaseController {
 		 {
 		 	$date = '\'00-00-00 00:00:00\'';
 		 }
+		 $plc = Input::get("plc");
+		 if($plc!=null)
+		 	return $this->getBalanceSheetOfCnfProjectLc($date, $plc);
 		$array = array();
 		for($i=7; $i<=57; $i++){
 			$Object = new stdClass();
 			$Object->id = $i;
-			$childs = Utilities::getParentListFromAllChilds($i);
+			$childs = Utilities::getChildList($i);
 			$balance = Utilities::getCurrentBalance($i, $date);
 			foreach ($childs as $child) {
 				$balance = $balance + Utilities::getCurrentBalance($child, $date);
@@ -58,6 +62,29 @@ class ReportController extends BaseController {
 		}
 		return json_encode($array);
 	}
+	public function getBalanceSheetOfCnfProjectLc($date, $plc){
+		$array = array();
+		for($i=7; $i<=57; $i++){
+			$Object = new stdClass();
+			$Object->id = $i;
+			$Object->balance = Utilities::getCurrentBalanceForPLC($i, $plc,  $date);
+			$fChilds = Utilities::getChild_level1($i);
+			$Object->children = array();
+			foreach ($fChilds as  $fChild) {
+				$ch = new stdClass();
+				$ch->id = $fChild;
+				$ch->balance = Utilities::getCurrentBalanceForPLC($fChild, $plc,  $date);
+				$childs = Utilities::getChildList($fChild);
+				foreach ($childs as $child) {
+					$ch->balance = $ch->balance + Utilities::getCurrentBalanceForPLC($child, $plc, $date);
+				}
+				$Object->children[] = $ch;
+			}
+			$array[] = $Object;
+		}
+		return json_encode($array);
+	}
+	
 
 	public function getTrialBalance(){
 		$balance = array();
@@ -77,7 +104,7 @@ class ReportController extends BaseController {
 
 
 	public function test(){
-		return Utilities::getParentListFromAllChilds(2);
+		return Utilities::getChildList(2);
 	/*	$starttime = microtime(true);
 		$res = Utilities::childBalance(1);
 		$endtime = microtime(true);
