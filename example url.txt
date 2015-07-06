@@ -99,3 +99,17 @@ http://localhost/acc/public/report/trialbalance
 	http://localhost/acc/public/edit/location?id=1&name=None%20for%20test&details=Initilize%20for%20test
 *Edit Account:
 	http://localhost/acc/public/edit/account?id=15&name=new%20test&parent=13&description=None%20your%20concern&account_type=2&old_parent_id=1&new_parent_id=13
+
+
+****************** INVENTORY **********************
+*add product:
+http://localhost/acc/public/add/products?name=rice&p_rate=200.5&s_rate=250.253
+*get all products:
+http://localhost/acc/public/all/products
+* purchase and sell products / inventory ledger
+http://localhost/acc/public/products/ledger?voucher_type=Purchase&date=2015-07-03&products=[{"quantity":"2","rate":"20.0","id":1},{"quantity":"3","rate":"220","id":2}]
+
+* stock report
+http://localhost/acc/public/report/stock?start=2015-07-04&end=2015-07-07
+
+

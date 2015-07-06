@@ -169,5 +169,45 @@ Route::get('/get/settings', array(
 		'as'	=>	'getSettings',
 		'uses'	=>	'SettingsController@getSettings'
 ));
+Route::post('/test', array(
+		'as'	=>	'test',
+		'uses'	=>	'TestController@uploadImage'
+));
+/*
+*	Inventory
+*/
 
+Route::post('/add/products', array(
+		'as'	=>	'addProducts',
+		'uses'	=>	'ProductController@postAddProducts'
+));
+Route::get('/all/products', array(
+		'as'	=>	'getProducts',
+		'uses'	=>	'ProductController@getAllProducts'
+));
+Route::post('/products/ledger', array(
+		'as'	=>	'postProductsLedger',
+		'uses'	=>	'ProductController@postProductsLedger'
+));
+
+Route::get('/report/stock', array(
+		'as'	=>	'stockReport',
+		'uses'	=>	'InventoryReportController@getStockReport'
+));
+Route::get('/report/product/sellPurchase', array(
+		'as'	=>	'getSingleProductSellPurchaseReport',
+		'uses'	=>	'InventoryReportController@getSingleProductSellPurchaseReport'
+));
+Route::get('/report/product/all/sellPurchase', array(
+		'as'	=>	'getAllProductSellPurchaseReport',
+		'uses'	=>	'InventoryReportController@getAllProductSellPurchaseReport'
+));
+Route::get('/report/ledger/purchase', array(
+		'as'	=>	'getPurchaseLedger',
+		'uses'	=>	'InventoryReportController@getPurchaseLedger'
+));
+Route::get('/report/ledger/sell', array(
+		'as'	=>	'getSellLedger',
+		'uses'	=>	'InventoryReportController@getSellLedger'
+));
 

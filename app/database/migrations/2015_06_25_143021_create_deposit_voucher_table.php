@@ -12,20 +12,18 @@ class CreateDepositVoucherTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create("deposit_voucher", function($table){
-			$table->bigIncrements('id');
-			$table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
-			$table->bigInteger("location_id")->unsigned();
-			$table->string("description");
-			$table->string("party_name");
-			$table->string("bank_acc_no");
-			$table->string("branch");
-			$table->string("address");
-			$table->string("payment_type");
-			$table->decimal("amount",15,5)->default(0);
-			$table->string("amount_in_word");
-			$table->string("note");
-			$table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+		Schema::create("deposit_voucher", function($t){
+			$t->increments('id');
+			$t->date('date');
+			$t->string('details');
+			$t->string('via');
+			$t->string('bank_ac');
+			$t->string('branch');
+			$t->string('address');
+			$t->string('amount');
+			$t->string('method');
+			$t->string('note');
+			$t->string('word');
 		});
 	}
 
