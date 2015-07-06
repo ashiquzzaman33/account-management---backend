@@ -8,7 +8,8 @@ class CreateLcTable extends Migration {
 		public function up()
 	{
 			Schema::create("lcs", function($table){
-				$table->bigInteger('lc_number');
+				$table->bigIncrements('id');
+				$table->string('lc_number');
 				$table->string('party_name');
 				$table->string('party_bank_name');
 				$table->string('party_address');
@@ -18,7 +19,6 @@ class CreateLcTable extends Migration {
 				$table->timestamp('starting_date');
 				$table->timestamp('dimilish_date');
 				$table->string("type");
-				$table->primary('lc_number');
 		});			
 	}
 
