@@ -9,21 +9,21 @@
 				$status 	= "Success";
 				$message 	= " ";
 				try {
-					    DB::table('deposit_voucher')->insert(array(
-								'date' 					=> Input::get("date"),
-								'location_id' 			=> Input::get("location_id"),
-								'description' 			=> Input::get("description"),
-								'party_name' 			=> Input::get("party_name"),
-								'bank_acc_no' 			=> Input::get("bank_acc_no"),
-								'branch' 				=> Input::get("branch"),
-								'address' 				=> Input::get("address"),
-								'payment_type' 			=> Input::get("payment_type"),
-								'amount' 				=> Input::get("amount"),
-								'amount_in_word' 		=> Input::get("amount_in_word"),
-								'note' 					=> Input::get("note")
+					    $id = DB::table('deposit_voucher')->insertGetId(array(
+								'date'	=>	Input::get("date"),
+								'details'	=>	Input::get("details"),
+								'via'	=>	Input::get("via"),
+								'bank_ac'	=>	Input::get("bank_ac"),
+								'branch'	=>	Input::get("branch"),
+								'address'	=>	Input::get("address"),
+								'amount'	=>	Input::get("amount"),
+								'method'	=>	Input::get("method"),
+								'note'	=>	Input::get("note"),
+								'word'	=>	Input::get("word"),
 							)
 						);
 						DB::commit();
+						return $id;
 				}
 				catch(\Exception $e)
 				{
