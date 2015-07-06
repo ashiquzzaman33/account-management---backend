@@ -4,12 +4,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class FileUpload {
-	private static final String CrLf = "\r\n";
 
 	public static void main(String[] args) throws Exception {
 		FileUpload.uploadFile("http://localhost/test/upload.php", "/test.jpg");
 	}
-
+	
+	private static final String CrLf = "\r\n";
 	public static void uploadFile(String siteUrl, String filePath)
 			throws Exception {
 		URLConnection conn = null;

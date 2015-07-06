@@ -17,7 +17,7 @@ class Utilities{
 			"SELECT general_accounts.id,
 			 balance FROM general_accounts JOIN 
 			 (SELECT max(general_accounts.`id`) AS id FROM `general_accounts` JOIN
-			  (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date >= ".$date.") 
+			  (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date <= ".$date.") 
 			  x ON general_accounts.voucher_id = x.id WHERE general_accounts.account_id = ".$acc_id.") P
 			   ON general_accounts.id = P.id;"));	
 		return isset($var[0])? $var[0]->balance: 0;	
@@ -38,7 +38,7 @@ class Utilities{
 			"SELECT general_accounts.id,
 			 balance FROM general_accounts JOIN 
 			 (SELECT max(general_accounts.`id`) AS id FROM `general_accounts` JOIN
-			  (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date >= ".$date." and project_or_cnf_or_lc=".$plc.") 
+			  (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date <= ".$date." and project_or_cnf_or_lc=".$plc.") 
 			  x ON general_accounts.voucher_id = x.id WHERE general_accounts.account_id = ".$acc_id.") P
 			   ON general_accounts.id = P.id;"));	
 		return isset($var[0])? $var[0]->balance: 0;	
