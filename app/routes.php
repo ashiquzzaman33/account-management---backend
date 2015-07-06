@@ -51,6 +51,10 @@ Route::get('/add/deposit/voucher', array(
 
 /***************Report Section**************/
 
+Route::get('/report/test', array(
+		'as'	=>	'getTest',
+		'uses'	=>	'ReportController@getBalanceSheetOfCnfProjectLc'
+));
 Route::get('/report/ledger', array(
 		'as'	=>	'getLedger',
 		'uses'	=>	'ReportController@getLedger'

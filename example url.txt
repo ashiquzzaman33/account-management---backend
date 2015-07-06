@@ -86,6 +86,9 @@ http://localhost/acc/public/update/settings?key=bg&value=aaa
 *Balance Sheet by Date
     http://localhost/acc/public/report/balancesheet?date="2015-5-5"
     http://localhost/acc/public/report/balancesheet
+*Lc/Project/CND Report
+    http://localhost/acc/public/report/balancesheet?date="2015-5-5"&plc=1
+    http://localhost/acc/public/report/balancesheet?plc=1
 *Get Voucher by id
 	http://localhost/acc/public/report/voucher?voucher_id=2
 *Party Wise Report
