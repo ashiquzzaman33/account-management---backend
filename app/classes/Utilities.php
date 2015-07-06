@@ -22,6 +22,7 @@ class Utilities{
 			   ON general_accounts.id = P.id;"));	
 		return isset($var[0])? $var[0]->balance: 0;	
 	}
+
 	public static function getCurrentBalanceForPLC($acc_id, $plc, $dt=null){
 		//query:  SELECT general_accounts.id, balance FROM general_accounts JOIN (SELECT max(general_accounts.`id`) AS id FROM `general_accounts` JOIN (SELECT vouchers.id, vouchers.date FROM vouchers WHERE vouchers.date >= '2015-06-10 00:00:00') x ON general_accounts.voucher_id = x.id WHERE general_accounts.account_id = 7)P ON general_accounts.id = P.id;
 		//$var =  DB::select(DB::raw("SELECT id, account_id, balance FROM general_accounts WHERE id  IN ( SELECT MAX(id) as id FROM general_accounts WHERE account_id = ".$acc_id.")"));	
@@ -42,6 +43,7 @@ class Utilities{
 			   ON general_accounts.id = P.id;"));	
 		return isset($var[0])? $var[0]->balance: 0;	
 	}
+
 	public static function getChildList($acc_id){
 		$var = DB::table("all_childs")->select("children")->where('parent', $acc_id)->get();
 		$arr = array();

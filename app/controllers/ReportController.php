@@ -48,6 +48,7 @@ class ReportController extends BaseController {
 		 $plc = Input::get("plc");
 		 if($plc!=null)
 		 	return $this->getBalanceSheetOfCnfProjectLc($date, $plc);
+
 		$array = array();
 		for($i=7; $i<=57; $i++){
 			$Object = new stdClass();
@@ -62,7 +63,24 @@ class ReportController extends BaseController {
 		}
 		return json_encode($array);
 	}
+	
 	public function getBalanceSheetOfCnfProjectLc($date, $plc){
+		$array = array();
+		for($i=7; $i<=57; $i++){
+			$Object = new stdClass();
+			$Object->id = $i;
+			$childs = Utilities::getChildList($i);
+			$balance = Utilities::getCurrentBalanceForPLC($i, $plc,  $date);
+			foreach ($childs as $child) {
+				$balance = $balance + Utilities::getCurrentBalanceForPLC($child, $plc, $date);
+			}
+			$Object->totalBalance = $balance;
+			$array[] = $Object;
+		}
+		return json_encode($array);
+	}
+	/*****************OLD With 1 level child of first account****************
+	/*public function getBalanceSheetOfCnfProjectLc($date, $plc){
 		$array = array();
 		for($i=7; $i<=57; $i++){
 			$Object = new stdClass();
@@ -83,7 +101,7 @@ class ReportController extends BaseController {
 			$array[] = $Object;
 		}
 		return json_encode($array);
-	}
+	}*/
 	
 
 	public function getTrialBalance(){
