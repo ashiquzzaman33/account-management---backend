@@ -93,7 +93,8 @@ http://localhost/acc/public/update/settings?key=bg&value=aaa
 	http://localhost/acc/public/report/voucher?voucher_id=2
 *Party Wise Report
     http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
-
+*Party Total Report
+    localhost/acc/public/report/party/all?start_date=2010-6-13&end_date=2020-6-20
 *Trial balance
 http://localhost/acc/public/report/trialbalance
 

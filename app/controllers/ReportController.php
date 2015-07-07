@@ -79,6 +79,60 @@ class ReportController extends BaseController {
 		}
 		return json_encode($array);
 	}
+	public function getPartyReport(){
+		$startDate = Input::get("start_date");
+		$endDate  = Input::get("end_date");
+		if($startDate==null||$endDate==null)
+			return json_encode(array("Status"=>"Failed", "Message"=>"No date Found"));
+		
+		$query =	"SELECT  first_t.name as party_name, first_t.balance as opening_balance, second_t.dr as dr, 
+				second_t.cr as cr, first_t.balance+second_t.dr-second_t.cr as balance FROM
+				(
+					SELECT  y.id, y.name, y.balance, y.account_id FROM
+					(	
+		    			SELECT x.id, x.name, x.voucher_id, x.account_id, x.balance, vouchers.date FROM
+						(	
+		           			 SELECT general_accounts.`id`, parties.name, `voucher_id`, 	
+		           			 general_accounts.`account_id`,`balance` FROM `general_accounts` 	
+		            		JOIN parties ON parties.account_id = general_accounts.account_id
+		        		) x 
+		    			INNER JOIN vouchers ON vouchers.id=x.voucher_id AND vouchers.date >= '".$startDate."'
+		    			 AND vouchers.date <= '".$endDate."'
+					)  y INNER JOIN 
+
+					(
+		  				 SELECT  MIN(p.id) as id FROM
+		  				 (
+		    				SELECT x.id,  x.voucher_id, x.account_id, x.balance FROM
+							(	
+		           				SELECT general_accounts.`id`, parties.name, `voucher_id`, 	
+		            			general_accounts.`account_id`,`balance` FROM `general_accounts` 	
+		            			JOIN parties ON parties.account_id = general_accounts.account_id
+		        			) x 
+		   					 INNER JOIN vouchers ON vouchers.id=x.voucher_id AND vouchers.date >= '".$startDate."'
+		   					 AND vouchers.date <= '".$endDate."'
+		    			) p
+		   				 GROUP BY p.account_id
+		    
+					) z ON y.id=z.id
+				) first_t INNER JOIN 
+				(
+					SELECT   tt.account_id, SUM(tt.cr) as cr, SUM(tt.dr) as dr FROM
+					(
+		   				 SELECT x.*, vouchers.date FROM
+						(
+		        			SELECT general_accounts.`id`, parties.name, `voucher_id`, 
+		        			general_accounts.`account_id`, 		`dr`, `cr`, `balance` FROM 
+		        			`general_accounts` JOIN parties ON parties.account_id		
+		       				 =general_accounts.account_id
+		   				 ) x 
+		   				 INNER JOIN vouchers ON vouchers.id=x.voucher_id AND 
+		   				 vouchers.date >= '".$startDate."' AND vouchers.date <= '".$endDate."'
+					) tt GROUP BY tt.account_id
+				) second_t ON first_t.account_id=second_t.account_id;";
+		return json_encode(DB::select(DB::raw($query)));
+
+	}
 	/*****************OLD With 1 level child of first account****************
 	/*public function getBalanceSheetOfCnfProjectLc($date, $plc){
 		$array = array();

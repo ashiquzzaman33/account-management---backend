@@ -97,7 +97,7 @@ class PartyController extends BaseController {
 							'children' 			=> 	$acc_id
 						)
 					);
-					$parentList = Utilities::getParentList($parent);
+					$parentList = Utilities::getChildList($parent);
 
 					foreach ($parentList as $par) {
 							DB::table('all_childs')->insert(array(

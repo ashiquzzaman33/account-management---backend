@@ -198,7 +198,7 @@
 			return Utilities::getParentList(Input::get("acc_id"));
 		}
 		public function getParentList1(){
-			return Utilities::getParentListFromAllChilds(Input::get("acc_id"));
+			return Utilities::getChildList(Input::get("acc_id"));
 		}
 		public static function nextAccountNo(){
 			return DB::table('accounts')->max('id')+1;
