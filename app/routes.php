@@ -51,9 +51,9 @@ Route::get('/add/deposit/voucher', array(
 
 /***************Report Section**************/
 
-Route::get('/report/test', array(
-		'as'	=>	'getTest',
-		'uses'	=>	'ReportController@getBalanceSheetOfCnfProjectLc'
+Route::get('/report/party/all', array(
+		'as'	=>	'getAllPartyReport',
+		'uses'	=>	'ReportController@getPartyReport'
 ));
 Route::get('/report/ledger', array(
 		'as'	=>	'getLedger',
@@ -217,4 +217,5 @@ Route::get('/report/ledger/sell', array(
 Route::get('/create/party', function(){
 	return View::make('party');
 });
+
 
