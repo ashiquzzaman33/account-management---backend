@@ -80,7 +80,7 @@ Route::get('/report/trialbalance', array(
 
 /**********************Party Section**********************/
 
-Route::get('/add/party', array(
+Route::post('/add/party', array(
 		'as'	=>	'addParty',
 		'uses'	=>	'PartyController@createParty'
 ));
@@ -173,7 +173,7 @@ Route::get('/get/settings', array(
 		'as'	=>	'getSettings',
 		'uses'	=>	'SettingsController@getSettings'
 ));
-Route::post('/test', array(
+Route::any('/testaa', array(
 		'as'	=>	'test',
 		'uses'	=>	'TestController@uploadImage'
 ));
@@ -214,4 +214,7 @@ Route::get('/report/ledger/sell', array(
 		'as'	=>	'getSellLedger',
 		'uses'	=>	'InventoryReportController@getSellLedger'
 ));
+Route::get('/create/party', function(){
+	return View::make('party');
+});
 

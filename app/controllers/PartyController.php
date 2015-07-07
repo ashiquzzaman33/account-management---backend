@@ -23,12 +23,18 @@ class PartyController extends BaseController {
 						throw new Exception(json_encode($status->Message), 1);
 						
 					}
+
+					$photo_name = time().Input::file('photo')->getClientOriginalName();
+					Input::file('photo')->move('uploads', $photo_name);
+					$photo_link = 'uploads/'.$photo_name;
+
+
 					DB::table('parties')->insert(array(
 						'name' 					=>	Input::get("party_name"),
 						'address' 				=>	Input::get('party_address'),
 						'mobile' 				=>	Input::get('party_mobile'),
 						'email' 				=>	Input::get('party_email'),
-						'image_url' 			=>	Input::get('party_image_url'),
+						'image_url' 			=>	$photo_link,
 						'company_name' 			=>	Input::get('party_company_name'),
 						'company_address' 		=>	Input::get('party_company_addres'),
 						'account_id' 			=>	$status->account_id
