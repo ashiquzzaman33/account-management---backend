@@ -94,7 +94,13 @@ class Utilities{
 		return json_encode($ob);    
 	}
 
-
+	public static function getParent($id, $accounts){
+		foreach ($accounts as $acc) {
+			if($acc->id == $id){
+				return $acc->parent;
+			}
+		}
+	}
 
 
 

@@ -1,9 +1,9 @@
 <?php
 
-class TestController extends BaseController{
+class TrialBalanceController extends BaseController{
 	public $trial_balance_acc_list = array();
 
-	public function test(){
+	public function getSortedTrialBalance(){
 		$max_id = DB::select(DB::raw("select max(id) as max_id from accounts"))[0]->max_id;
 		$accounts = DB::select(DB::raw("select id,parent,name from accounts"));
 		$accounts_tree = array();
@@ -19,15 +19,20 @@ class TestController extends BaseController{
 				array_push($accounts_tree[$parent]['children'], $accounts_tree[$i]);
 			}
 		}
-		//return json_encode($accounts_tree[1]);
-		$this->test2($accounts_tree[1]['children']);
+		$finalTrialAcc = array();
+		array_push($finalTrialAcc, $accounts_tree[1]['children'][4]);
+		array_push($finalTrialAcc, $accounts_tree[1]['children'][3]);
+		array_push($finalTrialAcc, $accounts_tree[1]['children'][2]);
+		array_push($finalTrialAcc, $accounts_tree[1]['children'][1]);
+		array_push($finalTrialAcc, $accounts_tree[1]['children'][0]);
+		$this->makeTree($finalTrialAcc);
 		return json_encode($this->trial_balance_acc_list);
 	}
 
-	public function test2($a){
+	public function makeTree($a){
 		foreach ($a as $acc) {
 			array_push($this->trial_balance_acc_list, $acc['id']);
-			$this->test2($acc['children']);
+			$this->makeTree($acc['children']);
 		}
 	}
 }

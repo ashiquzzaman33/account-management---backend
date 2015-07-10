@@ -113,7 +113,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::post('/add/account', array(
+Route::get('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -173,9 +173,9 @@ Route::get('/get/settings', array(
 		'as'	=>	'getSettings',
 		'uses'	=>	'SettingsController@getSettings'
 ));
-Route::any('/testaa', array(
-		'as'	=>	'test',
-		'uses'	=>	'TestController@uploadImage'
+Route::any('/trialbalance/sorted', array(
+		'as'	=>	'getSortedTrialBalance',
+		'uses'	=>	'TrialBalanceController@getSortedTrialBalance'
 ));
 /*
 *	Inventory

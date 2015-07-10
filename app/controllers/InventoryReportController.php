@@ -16,7 +16,7 @@ class InventoryReportController extends BaseController{
 		$id = Input::get('id');
 		$start = Input::get('start');
 		$end = Input::get('end');
-		$dates = DB::select(DB::raw("SELECT distinct(date) FROM `stockledgers` where date between '2015-07-01' and '2015-07-07' and item_id=".$id));
+		$dates = DB::select(DB::raw("SELECT distinct(date) FROM `stockledgers` where date between '". $start ."' and '". $end ."' and item_id=".$id));
 		$report = array();
 		foreach ($dates as $date) {
 			$purchase = DB::select(DB::raw("select sum(quantity) as qty,sum(rate*quantity)/sum(quantity) as rate,sum(rate*quantity) as total from stockledgers where date='". $date->date ."' and item_id=". $id ." and voucher_type='Purchase'"));

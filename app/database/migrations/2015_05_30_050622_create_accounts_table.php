@@ -21,7 +21,7 @@ class CreateAccountsTable extends Migration {
 		});
 		Schema::table('accounts', function($table) {
    				 $table->foreign('parent')->references('id')->on('accounts')->onDelete('cascade');
-   				 $table->foreign('account_type')->references('id')->on('account_types')->onDelete('cascade');
+   				 //$table->foreign('account_type')->references('id')->on('account_types')->onDelete('cascade');
    				 $table->unique( array('name','parent', 'description') );
 		});
 	}
