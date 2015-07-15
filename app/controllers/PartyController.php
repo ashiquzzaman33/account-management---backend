@@ -128,5 +128,11 @@ class PartyController extends BaseController {
 			return json_encode($mss);
 		}
 
+		public function getViewAllParty(){
+
+			$party = DB::table('parties')->get();
+			
+			return View::make('viewAllParty',array('party'=>$party));
+		}
 
 }

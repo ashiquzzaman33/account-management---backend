@@ -203,5 +203,12 @@
 		public static function nextAccountNo(){
 			return DB::table('accounts')->max('id')+1;
 		}
+
+		public function getAllBanks(){
+			$banks = DB::select(DB::raw("SELECT * FROM `accounts` where parent=22"));
+			return json_encode($banks);
+		}
+
+
 	}
  ?>

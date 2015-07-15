@@ -113,7 +113,7 @@ Route::get('/get/accounts', array(
 		'as'	=>	'getaccounts',
 		'uses'	=>	'AccountController@getAllAccount'
 ));
-Route::post('/add/account', array(
+Route::get('/add/account', array(
 		'as'	=>	'addAccount',
 		'uses'	=>	'AccountController@addAccount'
 ));
@@ -173,9 +173,9 @@ Route::get('/get/settings', array(
 		'as'	=>	'getSettings',
 		'uses'	=>	'SettingsController@getSettings'
 ));
-Route::any('/testaa', array(
-		'as'	=>	'test',
-		'uses'	=>	'TestController@uploadImage'
+Route::any('/trialbalance/sorted', array(
+		'as'	=>	'getSortedTrialBalance',
+		'uses'	=>	'TrialBalanceController@getSortedTrialBalance'
 ));
 /*
 *	Inventory
@@ -217,5 +217,21 @@ Route::get('/report/ledger/sell', array(
 Route::get('/create/party', function(){
 	return View::make('party');
 });
+Route::get('/create/users', array(
+		'as'	=>	'getCreateUsers',
+		'uses'	=>	'UserController@getCreateUsers'
+));
+Route::post('/create/users', array(
+		'as'	=>	'postCreateUsers',
+		'uses'	=>	'UserController@postCreateUsers'
+));
+Route::get('/bank', array(
+		'as'	=>	'getAllBanks',
+		'uses'	=>	'AccountController@getAllBanks'
+));
 
+Route::get('/view/party', array(
+		'as'	=>	'getViewAllParty',
+		'uses'	=>	'PartyController@getViewAllParty'
+));
 
