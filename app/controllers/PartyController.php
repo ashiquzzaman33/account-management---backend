@@ -12,6 +12,7 @@ class PartyController extends BaseController {
 			$account_desc				=	Input::get("account_description");
 			$account_opening_balance	=	Input::get("opening_balance");
 			$account_location			=	Input::get('location');
+			$reference					=	Input::get('party_reference');
 
 			DB::beginTransaction();
 			$status 	= "Success";
@@ -41,14 +42,14 @@ class PartyController extends BaseController {
 						)
 					);
 					DB::commit();
-
+				return '<h2 style="color:green">Party has been created successfully</h2>';
 			}
 			catch(\Exception $e)
 			{
 					DB::rollback();
-					return json_encode(array("Status" => "Failed", "Message" => "".$e));
+					return '<h2 style="color:red">Sorry there is an error</h2>';
 			}
-			return json_encode(array("Status" => "Success", "Message" => "".$message));
+			
 	}
 	public function getParties(){
 		if(Input::get("id")!=null){

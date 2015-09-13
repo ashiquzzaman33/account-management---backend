@@ -78,7 +78,8 @@ http://localhost/acc/public/update/settings?key=bg&value=aaa
      http://localhost/acc/public/get/party?address=Badamtola
 *Party By Id:
     http://localhost/acc/public/get/party?id=1
-
+*voucher by date,location*,voucher_type*
+http://localhost/acc/public/get/voucher?start_date=2015-07-01&end_date=2015-07-30&location_id=1&voucher_type=1
 
 *****************REPORT*********************
 *Ledger of Account
@@ -117,3 +118,4 @@ http://localhost/acc/public/products/ledger?voucher_type=Purchase&date=2015-07-0
 http://localhost/acc/public/report/stock?start=2015-07-04&end=2015-07-07
 
 
+http://localhost/acc/public/add/expenseVoucher?date=2015-07-20&location=1&receivers_name=raju&receivers_address=uttara&via=ashik&via_address=pabna&in_word=five hundred&total=520&expenses=[{"amount":"20","description":"adsad"},{"amount":"500","description":"asda"}]

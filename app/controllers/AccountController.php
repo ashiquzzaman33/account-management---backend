@@ -209,6 +209,5 @@
 			return json_encode($banks);
 		}
 
-
 	}
  ?>

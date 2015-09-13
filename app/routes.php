@@ -156,15 +156,11 @@ Route::post('/edit/location', array(
 		'uses'	=>	'LocationController@editLocation'
 ));
 
-Route::post('/edit/account', array(
+Route::get('/edit/account', array(
 		'as'	=>	'editAccount',
 		'uses'	=>	'AccountController@editAccount'
 ));
 
-Route::get('/add/expense/vouchers', array(
-		'as'	=>	'createExpenseVouchers',
-		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
-));
 Route::get('/update/settings', array(
 		'as'	=>	'updateSettings',
 		'uses'	=>	'SettingsController@postUpdateSettings'
@@ -234,4 +230,97 @@ Route::get('/view/party', array(
 		'as'	=>	'getViewAllParty',
 		'uses'	=>	'PartyController@getViewAllParty'
 ));
+Route::get('/login', array(
+		'uses'	=>	'LoginController@postLogin'
+));
+Route::get('/add/expenseVoucher', array(
+		'as'	=>	'addExpenseVoucher',
+		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
+));
+Route::get('/get/voucher', array(
+		'as'	=>	'getVoucher',
+		'uses'	=>	'VoucherController@getVoucher'
+));
+
+Route::get('/get/authPass', array(
+		'as'	=>	'getAuthPassword',
+		'uses'	=>	'UserController@getAuthPassword'
+));
+
+Route::post('new/do', array(
+		'as'	=>	'postNewDO',
+		'uses'	=>	'DOController@postNewDO'
+	));
+Route::get('get/do', array(
+		'as'	=>	'getDO',
+		'uses'	=>	'DOController@getDO'
+	));
+
+
+/*
+*	web report
+*/
+Route::get('/admin-login', array(
+		'as'	=>	'getLogin',
+		'uses'	=>	'AdminController@getLogin'
+	));
+Route::get('/admin-logout', array(
+		'as'	=>	'getLogout',
+		'uses'	=>	'AdminController@getLogout'
+	));
+Route::post('/admin-login', array(
+		'as'	=>	'postLogin',
+		'uses'	=>	'AdminController@postLogin'
+	));
+Route::get('/dashboard', array(
+		'before'	=>	'require_login',
+		'as'	=>	'getDashboard',
+		'uses'	=>	'AdminController@getDashboard'
+	));
+Route::get('/ledger-report', array(
+		'before'	=>	'require_login',
+		'as'	=>	'getLedgerReport',
+		'uses'	=>	'AdminController@getLedgerReport'
+	));
+Route::get('/admin/trial-balance', array(
+		'before'	=>	'require_login',
+		'as'	=>	'getAdminTrialBalance',
+		'uses'	=>	'AdminController@getAdminTrialBalance'
+	));
+
+Route::get('/admin/party-report', array(
+		'before'	=>	'require_login',
+		'as'	=>	'getAdminPartyReport',
+		'uses'	=>	'AdminController@getAdminPartyReport'
+	));
+Route::get('view/transaction', array(
+		'as'		=>	'getViewTransaction',
+		'uses'		=>	'AdminController@getViewTransaction'
+	));
+Route::get('get/transaction', array(
+		'as'		=>	'getTransaction',
+		'uses'		=>	'AdminController@getTransaction'
+	));
+Route::get('delete/user', array(
+		'before'	=>	'require_login',
+		'as'		=>	'getDeleteUser',
+		'uses'		=>	'AdminController@getDeleteUser'
+	));
+Route::post('delete/user', array(
+		'before'	=>	'require_login',
+		'as'		=>	'postDeleteUser',
+		'uses'		=>	'AdminController@postDeleteUser'
+	));
+
+Route::get('change-password', array(
+		'before'	=>	'require_login',
+		'as'		=>	'getChangePassword',
+		'uses'		=>	'AdminController@getChangePassword'
+	));
+Route::post('change-password', array(
+		'before'	=>	'require_login',
+		'as'		=>	'postChangePassword',
+		'uses'		=>	'AdminController@postChangePassword'
+	));
+
 

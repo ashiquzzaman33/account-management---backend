@@ -158,5 +158,36 @@
 		public function nextVoucherNo(){
 			return DB::table('vouchers')->max('id')+1;
 		}
+
+		public function getVoucher(){
+			$start = Input::get('start_date');
+			$end = Input::get('end_date');
+			$location_query = "";
+			if(Input::get('location_id') != "0"){
+				$location_query = " and location_id=" . Input::get('location_id');
+			}
+			$voucher_type_query = "";
+			if(Input::get('voucher_type') != "0"){
+				$voucher_type_query = " and voucher_type=" . Input::get('voucher_type');
+			}
+
+			$vouchers = DB::select(DB::raw("SELECT * FROM `vouchers` where date between '". $start ."' and '". $end ."'". $location_query . $voucher_type_query));
+			$locations = DB::select(DB::raw("SELECT * FROM `locations`"));
+			$types = DB::select(DB::raw("SELECT * FROM `voucher_types` "));
+			$result = array();
+			foreach ($vouchers as $v) {
+				array_push($result, array(
+					'id'	=>	$v->id,
+					'date'	=>	$v->date,
+					'location'	=>	Utilities::getLocation($locations, $v->location_id),
+					'narration'	=>	$v->narration,
+					'project_or_cnf_or_lc'	=>	$v->project_or_cnf_or_lc,
+					'voucher_type'	=>	Utilities::getVoucherTypeName($types, $v->voucher_type)
+					));
+			}
+			return json_encode($result);
+
+		}
+
 	}
  ?>

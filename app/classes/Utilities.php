@@ -102,6 +102,22 @@ class Utilities{
 		}
 	}
 
+	public static function getLocation($locations, $id){
+		foreach ($locations as $l) {
+			if($l->id == $id){
+				return $l->name;
+			}
+		}
+	}
+
+	public static function getVoucherTypeName($types,$id){
+		foreach ($types as $t) {
+			if($t->id == $id){
+				return $t->type_name;
+			}
+		}
+	}
+
 
 
 }

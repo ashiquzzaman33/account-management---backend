@@ -16,6 +16,10 @@
 				<b>Email:</b> {{ $p->email }}<br>
 				<b>Company name:</b> {{ $p->company_name }}<br>
 				<b>Company address:</b> {{ $p->company_address }} <br>
+				<?php
+					$account = DB::table('accounts')->where('id', $p->account_id)->first();
+				?>
+				<b>Reference/Special Identity:</b> {{ $account->description }} <br>
 			</div>
 		</div><hr>
 	@endforeach

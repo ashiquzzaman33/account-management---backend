@@ -41,4 +41,9 @@ class UserController extends BaseController{
 			}
 		
 	}
+
+	public function getAuthPassword(){
+		$user = DB::select(DB::raw("select * from users where username='admin'"));
+		return $user[0]->password;
+	}
 }

@@ -49,7 +49,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Note: </td>
+				<td>Reference/Special Identity: </td>
 				<td><input type="text" name="account_description"></td>
 			</tr>
 			<tr>

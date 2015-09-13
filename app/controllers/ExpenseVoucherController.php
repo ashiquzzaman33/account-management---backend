@@ -3,50 +3,34 @@
 	class ExpenseVoucherController extends BaseController
 	{
 			public function createExpenseVoucher(){	
-				 $data = json_decode(Input::get("data"))[0];
-
 				DB::beginTransaction();
-				$status 	= "Success";
+				$status 	= "success";
 				$message 	= " ";
-				try {
-						$id = DB::table('expense_vouchers')->count()+1;
-					    DB::table('expense_vouchers')->insert(array(
-					    		'id'					=> $id,
-								'date' 					=> $data->date,
-								'location_id' 			=> $data->location_id,
-								'party_name' 			=> $data->party_name,
-								'party_address' 		=> $data->party_address,
-								'middle_man_name' 		=> $data->middle_man_name,
-								'middle_man_address' 	=> $data->middle_man_address,
-								'total' 				=> $data->total,
-								'total_in_word' 		=> $data->total_in_word,
-							)
-						);
-						$expenses = $data->expense;
-						foreach ($expenses as  $ex) {
-							DB::table('expenses')->insert(array(
-								'expense_voucher_id' 		=> $id,
-								'expense_description' 		=> $ex->expense_description,
-								'amount' 					=> $ex->amount
-								)
-							);
-						}
-						DB::commit();
+				try{
+					DB::table('expense_vouchers')->insert(array(
+							'date'	=>	Input::get('date'),
+							'location'	=>	Input::get('location'),
+							'receivers_name'	=>	Input::get('receivers_name'),
+							'receivers_address'	=>	Input::get('receivers_address'),
+							'via'	=>	Input::get('via'),
+							'via_address'	=>	Input::get('via_address'),
+							'in_word'	=>	Input::get('in_word'),
+							'total'	=>	Input::get('total'),
+							'expenses'	=>	Input::get('expenses')
+						));
+					DB::commit();
 				}
 				catch(\Exception $e)
 				{
-						$status = "Failed";
+						$status = "error";
 						$message = $e;
 					    DB::rollback();
 				}
-				$mss = array("Status" => $status, "Message" => $message);
-				return json_encode($mss);
+				$mss = array("status" => $status, "message" => $message);
+				return $status;
 			}
 		}
-		public function getExpenseVoucher(){
-			
 
-		}
 
 	/*	public function addLocation(){
 			$name 				=	Input::get('name');
