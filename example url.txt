@@ -1,23 +1,40 @@
 		Add Something
 *********************************************
-*Voucher
+1. Voucher
+
 	http://localhost/acc/public/add/voucher?location_id=1&voucher_type=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":60,"remark":"This is a test for account 60"},{"amount":1000,"account_id":59,"remark":"This is a test for account 59"},{"amount":555,"account_id":58,"remark":"This is a test for account 58"},{"amount":-2789,"account_id":61,"remark":"This is a test for account 7"}]}
-*Voucher Type
+
+2. Voucher Type
+
 	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
-*Add Project
+
+3. Add Project
+
         http://localhost/acc/public/add/project?name=TestProjec3&investment=6666.34&related_party=Squire Ltd&starting_date=2015-06-23&operation_date=2015-06-25&dimilish_date=2015-06-30&type=Vehicle&location_id=1
-*Add LC
+
+4. Add LC
+
     http://localhost/acc/public/add/lc?lc_number=2&party_name=Jobbar and Co&party_bank_name=Rupaly Bank&party_address=Fultola&our_bank_name=Sonali Bank&lc_amount=43534.234&initialing_date=2015-6-10&starting_date=2015-6-10&dimilish_date=2015-6-10&type=Pat croi
-*Add CnF
+
+5. Add CnF
+
     http://localhost/acc/public/add/cnf?party_name=Hi&party_address=Badam%20Tola&location_id=1
-*Account type
+
+6. Account type
+
 	http://localhost/acc/public/add/account_type?type_name=Test&details=Test
-*Account
+
+7. Account
+
 	http://localhost/acc/public/add/account?name=Raju&parent=1&account_type=1&description=None&opening_balance=233&location=1
-*Location
+
+8. Location
+
 	http://localhost/acc/public/add/location?name=khulna&details=Fulbarigate, khulna, Bangladesh
 		Get Something
-*Add Expense Voucher:
+
+9. Add Expense Voucher:
+
 	http://localhost/acc/public/add/expense/vouchers?data=[
     {
         "date": "2015-06-17 00:00:00",
@@ -40,82 +57,139 @@
         "total_in_word": "Two thousands taka only"
     }
 ]
-*Add Deposit Voucher:
+
+10. Add Deposit Voucher:
+
     http://localhost/acc/public/add/deposit/voucher?date=2015-12-25&location_id=1&description=none&party_name=Party1&bank_acc_no=1223&branch=khulna&address=Daulatpur&payment_type=taka&amount=2344&amount_in_word=Two thousand&note=No note found
-*Add Party
+
+11. Add Party
+
     http://localhost/acc/public/add/party?party_name=Raju Khan&party_address=Badamtola&party_mobile=017***&party_email=raju@gmail.com&party_image_url=www.b.com/img.jpg&party_company_name=Unitech4U&party_company_addres=badamtola&account_name=raju_pay&is_payble=true&account_type=1&account_description=Hi, htis is&opening_balance=6000&location=1
 
-*update Settings
-http://localhost/acc/public/update/settings?key=bg&value=aaa
+
+12. update Settings
+
+    http://localhost/acc/public/update/settings?key=bg&value=aaa
 
 
 ************************GET SOMETHING**********************
 
-*Next Voucher No
+13. Next Voucher No
+
 	http://localhost/acc/public/get/next/voucherno
-*All Project
+
+14. All Project
+
     http://localhost/acc/public/get/project/all
-*All CNF
+
+15. All CNF
+
     http://localhost/acc/public/get/cnf/all
-*All LC
+
+16. All LC
+
     http://localhost/acc/public/get/lc/all
 
-*Locations
+17. Locations
+
 	http://localhost/acc/public/get/locations
-*Accounts
+
+18. Accounts
+
 	http://localhost/acc/public/get/accounts
-*Account Type:
+
+19. Account Type:
+
     http://localhost/acc/public/get/account/type
-*Voucher Type:
+
+20. Voucher Type:
+
     http://localhost/acc/public/get/voucher/type
-*Party
+
+21. Party
+
     http://localhost/acc/public/get/party
-*Party by name:
+
+22. Party by name:
+
     http://localhost/acc/public/get/party?party_name=raju
-*Party By Company name:
+
+23. Party By Company name:
+
      http://localhost/acc/public/get/party?company_name=Unit
-*Party By Address:
+
+24. Party By Address:
+
      http://localhost/acc/public/get/party?address=Badamtola
-*Party By Id:
+
+25. Party By Id:
+
     http://localhost/acc/public/get/party?id=1
-*voucher by date,location*,voucher_type*
-http://localhost/acc/public/get/voucher?start_date=2015-07-01&end_date=2015-07-30&location_id=1&voucher_type=1
+
+26. voucher by date,location*,voucher_type*
+
+    http://localhost/acc/public/get/voucher?start_date=2015-07-01&end_date=2015-07-30&location_id=1&voucher_type=1
 
 *****************REPORT*********************
-*Ledger of Account
+27. Ledger of Account with child entry
+
+    http://localhost/acc/public/report/ledger/with/child/entry?account_id=7&start_date=2015-06-19&end_date=2016-06-30
+
+28.  Ledger of Account
+
     http://localhost/acc/public/report/ledger?account_id=7&start_date=2015-06-19&end_date=2015-06-30
-*Balance Sheet by Date
+
+29. Balance Sheet by Date
+
     http://localhost/acc/public/report/balancesheet?date="2015-5-5"
     http://localhost/acc/public/report/balancesheet
-*Lc/Project/CND Report
+
+30. Lc/Project/CND Report
+
     http://localhost/acc/public/report/balancesheet?date="2015-5-5"&plc=1
     http://localhost/acc/public/report/balancesheet?plc=1
-*Get Voucher by id
+
+31. Get Voucher by id
+
 	http://localhost/acc/public/report/voucher?voucher_id=2
-*Party Wise Report
+
+32. Party Wise Report
+
     http://localhost/acc/public/report/party/details?party_id=1&start_date=1990-06-19&end_date=2015-06-30
-*Party Total Report
+
+33. Party Total Report
+
     localhost/acc/public/report/party/all?start_date=2010-6-13&end_date=2020-6-20
-*Trial balance
-http://localhost/acc/public/report/trialbalance
+
+34. Trial balance
+
+    http://localhost/acc/public/report/trialbalance
 
 *******************EDIT SOMETHING************
-*Edit Location:
+35. Edit Location:
+
 	http://localhost/acc/public/edit/location?id=1&name=None%20for%20test&details=Initilize%20for%20test
-*Edit Account:
+
+36. Edit Account:
 	http://localhost/acc/public/edit/account?id=15&name=new%20test&parent=13&description=None%20your%20concern&account_type=2&old_parent_id=1&new_parent_id=13
 
 
 ****************** INVENTORY **********************
-*add product:
-http://localhost/acc/public/add/products?name=rice&p_rate=200.5&s_rate=250.253
-*get all products:
-http://localhost/acc/public/all/products
-* purchase and sell products / inventory ledger
-http://localhost/acc/public/products/ledger?voucher_type=Purchase&date=2015-07-03&products=[{"quantity":"2","rate":"20.0","id":1},{"quantity":"3","rate":"220","id":2}]
+37. add product:
 
-* stock report
-http://localhost/acc/public/report/stock?start=2015-07-04&end=2015-07-07
+    http://localhost/acc/public/add/products?name=rice&p_rate=200.5&s_rate=250.253
+
+38. get all products:
+
+    http://localhost/acc/public/all/products
+
+39.  purchase and sell products / inventory ledger
+
+    http://localhost/acc/public/products/ledger?voucher_type=Purchase&date=2015-07-03&products=[{"quantity":"2","rate":"20.0","id":1},{"quantity":"3","rate":"220","id":2}]
+
+40. stock report
+
+    http://localhost/acc/public/report/stock?start=2015-07-04&end=2015-07-07
 
 
-http://localhost/acc/public/add/expenseVoucher?date=2015-07-20&location=1&receivers_name=raju&receivers_address=uttara&via=ashik&via_address=pabna&in_word=five hundred&total=520&expenses=[{"amount":"20","description":"adsad"},{"amount":"500","description":"asda"}]
+    http://localhost/acc/public/add/expenseVoucher?date=2015-07-20&location=1&receivers_name=raju&receivers_address=uttara&via=ashik&via_address=pabna&in_word=five hundred&total=520&expenses=[{"amount":"20","description":"adsad"},{"amount":"500","description":"asda"}]

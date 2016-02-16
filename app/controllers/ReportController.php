@@ -20,6 +20,22 @@ class ReportController extends BaseController {
 		$end_date	= Input::get("end_date");
 		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE account_id=".$account_id." ORDER BY `voucher_id`,`date`;")));
 	}
+	public function getLedgerWithChildsEntry(){
+
+		$account_id 	= Input::get("account_id");
+		$start_date 	= Input::get("start_date");
+		$end_date	= Input::get("end_date");
+
+		$childList = Utilities::getChildList($account_id);
+
+		$conditions = "account_id=".$account_id;
+		foreach ($childList as $child) {
+			$conditions = $conditions." OR account_id=".$child;
+		}
+
+
+		return json_encode(DB::select(DB::raw("SELECT general_accounts.`voucher_id`, `date`, `account_id`, `against_account_id`, `dr`, `cr`, `balance`, `remark` FROM `general_accounts` JOIN (SELECT `id`, `date` FROM `vouchers` WHERE `date` between '".$start_date." 00:00:00' and '".$end_date." 23:59:00') x ON(general_accounts.voucher_id=x.id) WHERE ".$conditions." ORDER BY `voucher_id`,`date`;")));
+	}
 	public function getPartyWiseDetail(){
 		$id = Input::get("party_id");
 		$obj = new stdClass();

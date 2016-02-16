@@ -59,6 +59,11 @@ Route::get('/report/ledger', array(
 		'as'	=>	'getLedger',
 		'uses'	=>	'ReportController@getLedger'
 ));
+Route::get('/report/ledger/with/child/entry', array(
+		'as'	=>	'getLedger',
+		'uses'	=>	'ReportController@getLedgerWithChildsEntry'
+));
+
 Route::get('report/balancesheet', array(
 		'as'	=>	'getBalanceSheet',
 		'uses'	=>	'ReportController@getBalanceSheet'

@@ -1,28 +1,17 @@
-﻿
-Done deposit voucher
-=============================
-date, location_id, description, party_name, bank_acc_no, branch, address, payment_type, amount, amount_in_word, note
+﻿1.	কোন Child Ledger a entry করলে সকল Parent Ledger এ হিট করবে।
+
+   Done. Report Controller -> getLedgerWithChildsEntry, Example: Example url entry 27.
 
 
-20-06-2015
-================
-Done 1. create project (project_name, party_name, party_address, starting_date,     operation_date, dimilish_date, project_location)
-Done 2. get All projects
-
-
-27-06-2015
-================
-Done*১। new voucher create করার সময় voucher_id তুই define করবি। আমি voucher_id দেব না।    Double 
-    Submit Should check by Raju(ex: clear the field after submit if success)
-    আর transaction  টা কি project/lc/c&f ের জন্য? if true then which project/lc/c&f.
-Done **২। Route for  getting Account types
-Done ৩। any ledger report date wise
-Done 5. create lc and C&F. check voucher_sample.xlsx for fields.
-
-
-/**********************/
-Voucher type add করতে হবেnew Voucher এ
-
+2.	Trial Balance, Date Wise Show করার option থাকবে।
+3.	Trial Balance Report এ Parent-Child Indentation করতে হবে। 
+4.	Voucher >> New Voucher এর entry গুলো পরবর্তীতে Edit করা যাবে।
+5.	নিম্নলিখিত Voucher গুলো তৈরি করতে হবে এবং date wise query করতে হবে
+	Salary voucher
+	Purchase order
+6.	Trial Balance Report এ Child Ledger এর Effect, Parent Ledger  এ থাকবে না।	
+7.	Voucher গুলো Duplicate এন্ট্রি হবে না।	journal voucher, debit, credit, salary, PO
+8.	Receipt Payment Report ( Date Wise)
 
 
 
