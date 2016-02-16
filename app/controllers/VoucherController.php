@@ -189,5 +189,26 @@
 
 		}
 
+		// not complete yet
+		public function getVoucherByVoucherId($voucher_id){
+			$voucher = DB::table('vouchers')->where('id', $voucher_id)->first();
+			$res = array();
+			array_push($res, array(
+					'date'	=>	$voucher->date,
+					'location'	=>	DB::table('locations')->where('id', $voucher->location_id)->first()->name,
+					'narration'	=>	$voucher->narration,
+					'project_or_cnf_or_lc'	=>	$voucher->project_or_cnf_or_lc,
+					'voucher_type'	=>	$voucher->voucher_type,
+
+
+
+				));
+
+
+			return json_encode($res);
+		}
+
+
+
 	}
  ?>

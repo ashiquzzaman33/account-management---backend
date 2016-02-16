@@ -323,4 +323,19 @@ Route::post('change-password', array(
 		'uses'		=>	'AdminController@postChangePassword'
 	));
 
+Route::post('lc/add-meta', array(
+		'as'		=>	'postLcMetaAdd',
+		'uses'		=>	'LCController@postLcMetaAdd'
+	));
+
+Route::get('lc/meta', array(
+		'as'		=>	'getLcMeta',
+		'uses'		=>	'LCController@getLcMeta'
+	));
+// not complete yet
+Route::get('get/voucher/{voucher_id}', array(
+		'as'		=>	'getVoucherByVoucherId',
+		'uses'		=>	'VoucherController@getVoucherByVoucherId'
+	));
+
 
