@@ -165,6 +165,10 @@
 
     http://localhost/acc/public/report/trialbalance
 
+34.1 Trial Balance with date
+
+    http://localhost/acc/public/report/trialbalance/with/date?start_date=2010-6-13&end_date=2020-6-20
+
 *******************EDIT SOMETHING************
 35. Edit Location:
 
@@ -193,3 +197,4 @@
 
 
     http://localhost/acc/public/add/expenseVoucher?date=2015-07-20&location=1&receivers_name=raju&receivers_address=uttara&via=ashik&via_address=pabna&in_word=five hundred&total=520&expenses=[{"amount":"20","description":"adsad"},{"amount":"500","description":"asda"}]
+

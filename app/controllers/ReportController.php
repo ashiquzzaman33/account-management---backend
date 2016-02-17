@@ -187,17 +187,87 @@ class ReportController extends BaseController {
 				));
 			
 		}
+
+
 		return json_encode($balance);
 	}
+	public function getTrialBalWithDateInternal($needCondition, $beforeCondition, $id, $space){
 
 
-	public function test(){
-		return Utilities::getChildList(2);
-	/*	$starttime = microtime(true);
-		$res = Utilities::childBalance(1);
-		$endtime = microtime(true);
-		$duration = $endtime - $starttime;
-		return $res."   ".$duration."  microseconds";*/
+		$general_acc_need = DB::select(DB::raw('SELECT balance FROM `general_accounts` WHERE account_id='. $id."".$needCondition.' order by id desc limit 1'));
+		$general_acc_before =  DB::select(DB::raw('SELECT balance FROM `general_accounts` WHERE account_id='. $id."".$beforeCondition.' order by id desc limit 1'));
+	
+		$account =  DB::select(DB::raw('SELECT `id`, `name` FROM `accounts` WHERE `id` = '.$id." limit 1;"));
+		
+		$needBal = 0.0;
+		if($needCondition!=""){
+			$needBal = $general_acc_need[0]->balance;
+		}
+		$beforeBal = 0.0;
+
+		if($beforeCondition!=""){
+			$beforeBal = $general_acc_before[0]->balance;
+		}
+
+		$result = array();
+		if($id!=1){
+			array_push($result, array(
+				'id'		=>	$account[0]->id,
+				'name'		=>	$space.$account[0]->name,
+				'balance'	=>	$needBal-$beforeBal
+			));
+		}
+		$childs = Utilities::getChild_level1($account[0]->id);
+		foreach($childs as $chld){
+			if($id!=1)
+				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space."  ");
+			else
+				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space);
+			$result = array_merge($result, $temp);
+		}
+		return $result;
 	}
+	public function getTrialBalanceWithDate(){
+		$startDate = Input::get("start_date");
+		$endDate  = Input::get("end_date");
+
+
+		$neededVoucherid = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date` between '".$startDate." 00:00:00' and '".$endDate." 23:59:00';"));
+
+		$needCondition = "";
+		$first = 1;
+		foreach($neededVoucherid as $need){
+			if($first!=1)
+				$needCondition = $needCondition." OR voucher_id=".$need->id;
+			else
+				$needCondition = $needCondition." voucher_id=".$need->id;
+			$first = 2;
+		}
+		if($needCondition!=""){
+			$needCondition = " AND (".$needCondition." )";
+		}
+		$beforeVoucherId = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date` < '".$startDate." 00:00:00';"));
+		
+		$first = 1;
+		$beforeCondition = "";
+		foreach($beforeVoucherId as $before){
+			if($first!=1)
+				$beforeCondition = $beforeCondition." OR voucher_id=".$before->id;
+			else
+				$beforeCondition = $beforeCondition." voucher_id=".$before->id;
+			$first = 2;
+		}
+
+		if($beforeCondition!=""){
+			$beforeCondition = " AND ( ".$beforeCondition." )";
+		}
+
+		$result = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, 1, "");
+		
+
+
+		return json_encode($result);
+	}
+
 
 }

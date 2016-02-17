@@ -1,15 +1,22 @@
 ﻿1.	কোন Child Ledger a entry করলে সকল Parent Ledger এ হিট করবে।
 
-   Done. Report Controller -> getLedgerWithChildsEntry, Example: Example url entry 27.
+   Done. ReportController -> getLedgerWithChildsEntry, Example: Example url entry 27.
 
 
 2.	Trial Balance, Date Wise Show করার option থাকবে।
+	Confusion, Mostly done. ReportController->getTrialBalanceWithDate, Example: Example URL of 34.1
+
+
 3.	Trial Balance Report এ Parent-Child Indentation করতে হবে। 
-4.	Voucher >> New Voucher এর entry গুলো পরবর্তীতে Edit করা যাবে।
-5.	নিম্নলিখিত Voucher গুলো তৈরি করতে হবে এবং date wise query করতে হবে
+	Done.
+
+4.	Trial Balance Report এ Child Ledger এর Effect, Parent Ledger  এ থাকবে না।	
+	Done. Previously 
+
+5.	Voucher >> New Voucher এর entry গুলো পরবর্তীতে Edit করা যাবে।
+6.	নিম্নলিখিত Voucher গুলো তৈরি করতে হবে এবং date wise query করতে হবে
 	Salary voucher
 	Purchase order
-6.	Trial Balance Report এ Child Ledger এর Effect, Parent Ledger  এ থাকবে না।	
 7.	Voucher গুলো Duplicate এন্ট্রি হবে না।	journal voucher, debit, credit, salary, PO
 8.	Receipt Payment Report ( Date Wise)
 

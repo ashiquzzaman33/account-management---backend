@@ -60,7 +60,7 @@ Route::get('/report/ledger', array(
 		'uses'	=>	'ReportController@getLedger'
 ));
 Route::get('/report/ledger/with/child/entry', array(
-		'as'	=>	'getLedger',
+		'as'	=>	'getLedgerWithChildsEntry',
 		'uses'	=>	'ReportController@getLedgerWithChildsEntry'
 ));
 
@@ -82,6 +82,12 @@ Route::get('/report/trialbalance', array(
 		'as'	=>	'getTrialBalance',
 		'uses'	=>	'ReportController@getTrialBalance'
 ));
+
+Route::get('/report/trialbalance/with/date', array(
+		'as'	=>	'getTrialBalanceWithDate',
+		'uses'	=>	'ReportController@getTrialBalanceWithDate'
+));
+
 
 /**********************Party Section**********************/
 
