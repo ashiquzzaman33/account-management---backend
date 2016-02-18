@@ -210,5 +210,30 @@
 
 
 
+
+	public function getVoucherWithDate(){
+		$startDate = Input::get("start_date");
+		$endDate  = Input::get("end_date");
+		$result = array();
+	
+
+		$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`>'".$startDate." 00:00:00' AND `date`< '".$endDate." 23:59:59' AND id<>1;"));
+
+
+		foreach($ids as $id){
+			$Object = new stdClass();
+			$Object->voucher_id = $id->id;
+		
+			$trans = DB::select(DB::raw("SELECT `account_id`, SUM(`dr`) as dr, SUM(cr) as cr, remark FROM `general_accounts` WHERE `voucher_id`=".$id->id." group by `account_id`;"));
+			$Object->transactions = $trans;
+			array_push($result, $Object);
+		}
+		
+		return json_encode($result);
+	
+	}
+
+
+
 	}
  ?>

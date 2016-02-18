@@ -157,6 +157,11 @@ Route::post('/add/voucher', array(
 		'as'	=>	'addVoucher',
 		'uses'	=>	'VoucherController@addVoucher'
 ));
+Route::get('/get/voucher/with/date', array(
+		'as'	=>	'getVoucherWithDate',
+		'uses'	=>	'VoucherController@getVoucherWithDate'
+));
+
 Route::get('/report/get/balance', array(
 		'as'	=>	'getBalance',
 		'uses'	=>	'ReportController@getBalanceOfAccount '

@@ -4,7 +4,7 @@
 
 	http://localhost/acc/public/add/voucher?location_id=1&voucher_type=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":60,"remark":"This is a test for account 60"},{"amount":1000,"account_id":59,"remark":"This is a test for account 59"},{"amount":555,"account_id":58,"remark":"This is a test for account 58"},{"amount":-2789,"account_id":61,"remark":"This is a test for account 7"}]}
 
-2. Voucher Type
+2. Voucher Type  
 
 	http://localhost/acc/public/add/voucher_type?type_name=Test&details=Test
 
@@ -197,4 +197,9 @@
 
 
     http://localhost/acc/public/add/expenseVoucher?date=2015-07-20&location=1&receivers_name=raju&receivers_address=uttara&via=ashik&via_address=pabna&in_word=five hundred&total=520&expenses=[{"amount":"20","description":"adsad"},{"amount":"500","description":"asda"}]
+
+41. Get Voucher with date
+        http://localhost/acc/public/get/voucher/with/date?start_date=1991-08-12&end_date=2020-06-2
+
+
 
