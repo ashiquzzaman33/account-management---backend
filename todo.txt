@@ -4,7 +4,7 @@
 
 
 2.	Trial Balance, Date Wise Show করার option থাকবে।
-	Confusion, Mostly done. ReportController->getTrialBalanceWithDate, Example: Example URL of 34.1
+	Done. ReportController->getTrialBalanceWithDate, Example: Example URL of 34.1
 
 
 3.	Trial Balance Report এ Parent-Child Indentation করতে হবে। 

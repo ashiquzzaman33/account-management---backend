@@ -200,12 +200,12 @@ class ReportController extends BaseController {
 		$account =  DB::select(DB::raw('SELECT `id`, `name` FROM `accounts` WHERE `id` = '.$id." limit 1;"));
 		
 		$needBal = 0.0;
-		if($needCondition!=""){
+		if($needCondition!=""&&sizeof($general_acc_before)>0){
 			$needBal = $general_acc_need[0]->balance;
 		}
 		$beforeBal = 0.0;
 
-		if($beforeCondition!=""){
+		if($beforeCondition!=""&&sizeof($general_acc_before)>0){
 			$beforeBal = $general_acc_before[0]->balance;
 		}
 
@@ -216,7 +216,7 @@ class ReportController extends BaseController {
 				'name'		=>	$space.$account[0]->name,
 				'balance'	=>	$needBal-$beforeBal
 			));
-		}
+		} 
 		$childs = Utilities::getChild_level1($account[0]->id);
 		foreach($childs as $chld){
 			if($id!=1)
@@ -227,14 +227,17 @@ class ReportController extends BaseController {
 		}
 		return $result;
 	}
+
+
 	public function getTrialBalanceWithDate(){
 		$startDate = Input::get("start_date");
 		$endDate  = Input::get("end_date");
 
-
-		$neededVoucherid = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date` between '".$startDate." 00:00:00' and '".$endDate." 23:59:00';"));
-
+		$neededVoucherid = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date` < '".$endDate." 23:59:59';"));
 		$needCondition = "";
+
+
+
 		$first = 1;
 		foreach($neededVoucherid as $need){
 			if($first!=1)
@@ -243,6 +246,7 @@ class ReportController extends BaseController {
 				$needCondition = $needCondition." voucher_id=".$need->id;
 			$first = 2;
 		}
+
 		if($needCondition!=""){
 			$needCondition = " AND (".$needCondition." )";
 		}
@@ -258,15 +262,16 @@ class ReportController extends BaseController {
 			$first = 2;
 		}
 
+
 		if($beforeCondition!=""){
 			$beforeCondition = " AND ( ".$beforeCondition." )";
 		}
 
-		$result = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, 1, "");
-		
 
+		$result = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, 1, "");
 
 		return json_encode($result);
+	
 	}
 
 
