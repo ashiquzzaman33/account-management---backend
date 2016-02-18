@@ -12,6 +12,11 @@
 				$voucher_type	=	Input::get("voucher_type");
 				$transactions	=	json_decode(Input::get("transaction"))->transaction;
 
+				$currDate = date('Y:m:d', strtotime($date));
+				$preCheck =	 DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE  `location_id`=".$location_id ." AND `narration`='".$narration."' AND `project_or_cnf_or_lc`='".$projectOrCnf."' AND `voucher_type`='".$voucher_type."' AND date BETWEEN '".$currDate." 00:00:00' AND '".$currDate." 23:59:59'"));
+				if(sizeof($preCheck)>0)
+					return json_encode(array("Status" => "Failed", "Message" => "duplicate entry"));
+				
 
 				$debitCounter	= 0;
 				$creditCounter 	= 0;
@@ -219,6 +224,7 @@
 
 		$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`>'".$startDate." 00:00:00' AND `date`< '".$endDate." 23:59:59' AND id<>1;"));
 
+ 
 
 		foreach($ids as $id){
 			$Object = new stdClass();
