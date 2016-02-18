@@ -201,5 +201,16 @@
 41. Get Voucher with date
         http://localhost/acc/public/get/voucher/with/date?start_date=1991-08-12&end_date=2020-06-2
 
+42. Add purchase order
+ http://localhost/acc/public/add/purchase/order?name=raju&address=khulna&date=2013-7-12&content=bal&total_price=23.23&shabek=234&grand_total=22&tt_dd_cash=22&jer=2
+
+43. Get purchase order by date
+   
+     http://localhost/acc/public/get/purchase/order?start_date=1991-07-12&end_date=2020-07-12
+
+44. Edit Purchase Order
+
+ http://localhost/acc/public/edit/purchase/order?id=1&name=kaju&address=khulna&date=2013-7-12&content=bal&total_price=333.23&shabek=234&grand_total=22&tt_dd_cash=22&jer=2
+
 
 

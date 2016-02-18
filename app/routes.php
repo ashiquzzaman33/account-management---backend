@@ -348,6 +348,31 @@ Route::get('lc/meta', array(
 		'as'		=>	'getLcMeta',
 		'uses'		=>	'LCController@getLcMeta'
 	));
+
+Route::get('add/purchase/order', array(
+		'as'		=>	'addPurchaseOrder',
+		'uses'		=>	'PurchaseOrderController@createPurchaseOrder'
+	));
+
+Route::get('get/purchase/order', array(
+		'as'		=>	'getPurchaseOrder',
+		'uses'		=>	'PurchaseOrderController@getPurchaseOrderByDate'
+	));
+
+
+Route::get('edit/purchase/order', array(
+		'as'		=>	'editPurchaseOrder',
+		'uses'		=>	'PurchaseOrderController@editPurchaseOrder'
+	));
+
+
+
+
+
+
+
+
+
 // not complete yet
 Route::get('get/voucher/{voucher_id}', array(
 		'as'		=>	'getVoucherByVoucherId',

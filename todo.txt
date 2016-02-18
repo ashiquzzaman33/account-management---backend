@@ -19,9 +19,10 @@
 
 6.	নিম্নলিখিত Voucher গুলো তৈরি করতে হবে এবং date wise query করতে হবে
 	Salary voucher
-	Purchase order
+	Purchase order       Done Example: example url 42, 43, 44
 
 7.	Voucher গুলো Duplicate এন্ট্রি হবে না।	journal voucher, debit, credit, salary, PO
+	Only new Voucher done. 
 
 8.	Receipt Payment Report ( Date Wise)
 
