@@ -22,6 +22,45 @@
 
 
 
+Voucher format
+===============================
+1. Salary Voucher
+-------------------
+date	->	date
+section	->	string
+party name	->	string
+basis on/date	->	string
+amount in words	->	string
+basic salary	->	decimal
+presence	->	decimal
+total1	->	decimal
+others	->	decimal
+total2	->	decimal
+advance	->	decimal
+fine	->	decimal
+apron/mask	->	decimal
+other deduction	->	decimal
+grand total	->	decimal
+
+
+2. purchase order
+-------------------
+name
+address
+date
+[
+	{description(string), quantity(decimal), rate(decimal), total pice(decimal), commision(decimal), total commision(decimal), neat price(decimal)}
+	{description(string), quantity(decimal), rate(decimal), total pice(decimal), commision(decimal), total commision(decimal), neat price(decimal)}
+	{description(string), quantity(decimal), rate(decimal), total pice(decimal), commision(decimal), total commision(decimal), neat price(decimal)}
+	
+]
+total price(decimal)
+shabek(decimal)
+grand total(decimal)
+tt_dd_cash(decimal)
+jer(decimal)
+
+
 
 
 
