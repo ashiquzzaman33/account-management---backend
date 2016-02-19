@@ -18,11 +18,13 @@
 	Done. Only show. Edit is not required as we agreed. Example: Example URL entry 41
 
 6.	নিম্নলিখিত Voucher গুলো তৈরি করতে হবে এবং date wise query করতে হবে
-	Salary voucher
-	Purchase order       Done Example: example url 42, 43, 44
+	Salary Voucher 		Done Example: example url entry 45, 46, 47
+	Purchase order       Done Example: example url entry 42, 43, 44
 
 7.	Voucher গুলো Duplicate এন্ট্রি হবে না।	journal voucher, debit, credit, salary, PO
-	Only new Voucher done. 
+	Done new Voucher, purchase order,  Salary Voucher
+
+	Journal voucher, debit and credit duplicate check should be done by Raju as we agreed.
 
 8.	Receipt Payment Report ( Date Wise)
 

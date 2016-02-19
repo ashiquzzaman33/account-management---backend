@@ -8,15 +8,15 @@
 				$message 	= " ";
 				try{
 					DB::table('expense_vouchers')->insert(array(
-							'date'	=>	Input::get('date'),
-							'location'	=>	Input::get('location'),
+							'date'				=>	Input::get('date'),
+							'location'			=>	Input::get('location'),
 							'receivers_name'	=>	Input::get('receivers_name'),
 							'receivers_address'	=>	Input::get('receivers_address'),
-							'via'	=>	Input::get('via'),
-							'via_address'	=>	Input::get('via_address'),
-							'in_word'	=>	Input::get('in_word'),
-							'total'	=>	Input::get('total'),
-							'expenses'	=>	Input::get('expenses')
+							'via'				=>	Input::get('via'),
+							'via_address'		=>	Input::get('via_address'),
+							'in_word'			=>	Input::get('in_word'),
+							'total'				=>	Input::get('total'),
+							'expenses'			=>	Input::get('expenses')
 						));
 					DB::commit();
 				}

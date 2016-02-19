@@ -212,5 +212,17 @@
 
  http://localhost/acc/public/edit/purchase/order?id=1&name=kaju&address=khulna&date=2013-7-12&content=bal&total_price=333.23&shabek=234&grand_total=22&tt_dd_cash=22&jer=2
 
+ 45. Add Salary Voucher
+
+    http://localhost/acc/public/add/salary/voucher?date=2010-6-2&section=hello&party_name=test&basis_on_or_date=basic&amount_in_words=pash soto&basic_salary=1222&presence=233&total1=2&others=3&total2=5&advance=2&fine=0.2&apron_or_mask=111&other_deduction=23&grand_total=222
+
+
+ 46. Get  Salary Voucher by Date
+
+    http://localhost/acc/public/get/salary/voucher?start_date=1991-07-12&end_date=2020-07-12
+
+ 47. Edit  Salary Voucher
+
+    http://localhost/acc/public/edit/salary/voucher?id=1&date=2010-6-2&section=hello&party_name=test&basis_on_or_date=basic&amount_in_words=pash soto&basic_salary=1222&presence=233&total1=2&others=3&total2=5&advance=2&fine=0.2&apron_or_mask=111&other_deduction=23&grand_total=222
 
 

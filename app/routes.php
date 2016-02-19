@@ -349,6 +349,7 @@ Route::get('lc/meta', array(
 		'uses'		=>	'LCController@getLcMeta'
 	));
 
+//Purchase Order
 Route::get('add/purchase/order', array(
 		'as'		=>	'addPurchaseOrder',
 		'uses'		=>	'PurchaseOrderController@createPurchaseOrder'
@@ -365,6 +366,23 @@ Route::get('edit/purchase/order', array(
 		'uses'		=>	'PurchaseOrderController@editPurchaseOrder'
 	));
 
+////SalaryVoucher
+
+Route::get('add/salary/voucher', array(
+		'as'		=>	'addSalaryVoucher',
+		'uses'		=>	'SalaryVoucherController@createSalaryVoucher'
+	));
+
+Route::get('get/salary/voucher', array(
+		'as'		=>	'getSalaryVoucher',
+		'uses'		=>	'SalaryVoucherController@getSalaryVoucherByDate'
+	));
+
+
+Route::get('edit/salary/voucher', array(
+		'as'		=>	'editSalaryVoucher',
+		'uses'		=>	'SalaryVoucherController@editSalaryVoucher'
+	));
 
 
 
