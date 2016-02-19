@@ -83,9 +83,16 @@ Route::get('/report/trialbalance', array(
 		'uses'	=>	'ReportController@getTrialBalance'
 ));
 
+
 Route::get('/report/trialbalance/with/date', array(
 		'as'	=>	'getTrialBalanceWithDate',
 		'uses'	=>	'ReportController@getTrialBalanceWithDate'
+));
+
+
+Route::get('/report/financial/statement/with/date', array(
+		'as'	=>	'getFinancialStatementByDate',
+		'uses'	=>	'ReportController@getFinancialStatementByDate'
 ));
 
 

@@ -191,7 +191,7 @@ class ReportController extends BaseController {
 
 		return json_encode($balance);
 	}
-	public function getTrialBalWithDateInternal($needCondition, $beforeCondition, $id, $space){
+	public function getTrialBalWithDateInternal($needCondition, $beforeCondition, $id, $space, $flag){
 
 
 		$general_acc_need = DB::select(DB::raw('SELECT balance FROM `general_accounts` WHERE account_id='. $id."".$needCondition.' order by id desc limit 1'));
@@ -200,7 +200,8 @@ class ReportController extends BaseController {
 		$account =  DB::select(DB::raw('SELECT `id`, `name` FROM `accounts` WHERE `id` = '.$id." limit 1;"));
 		
 		$needBal = 0.0;
-		if($needCondition!=""&&sizeof($general_acc_before)>0){
+
+		if($needCondition!=""&&sizeof($general_acc_need)>0){
 			$needBal = $general_acc_need[0]->balance;
 		}
 		$beforeBal = 0.0;
@@ -210,6 +211,7 @@ class ReportController extends BaseController {
 		}
 
 		$result = array();
+
 		if($id!=1){
 			array_push($result, array(
 				'id'		=>	$account[0]->id,
@@ -217,26 +219,32 @@ class ReportController extends BaseController {
 				'balance'	=>	$needBal-$beforeBal
 			));
 		} 
+		
 		$childs = Utilities::getChild_level1($account[0]->id);
 		foreach($childs as $chld){
-			if($id!=1)
-				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space."  ");
+			if($id!=1&&$flag==1)
+				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space."  ", $flag);
 			else
-				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space);
+				$temp = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $chld, $space, $flag);
 			$result = array_merge($result, $temp);
 		}
+
+
+
 		return $result;
 	}
-
 
 	public function getTrialBalanceWithDate(){
 		$startDate = Input::get("start_date");
 		$endDate  = Input::get("end_date");
+		return $this->getAccountsBalanceWithDate($startDate, $endDate, 1, 1);
+
+	}
+
+	public function getAccountsBalanceWithDate($startDate, $endDate, $acc_id, $flag_space){
 
 		$neededVoucherid = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date` < '".$endDate." 23:59:59';"));
 		$needCondition = "";
-
-
 
 		$first = 1;
 		foreach($neededVoucherid as $need){
@@ -268,10 +276,98 @@ class ReportController extends BaseController {
 		}
 
 
-		$result = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, 1, "");
+		$result = $this->getTrialBalWithDateInternal($needCondition, $beforeCondition, $acc_id, "", $flag_space);
 
 		return json_encode($result);
 	
+	}
+	public function getChildCondition($acc_id){
+		$allChilds = Utilities::getChildList($acc_id);
+		$childCondition = " (`account_id`='$acc_id' ";
+
+		foreach ($allChilds as $child) {
+				$childCondition = " $childCondition OR `account_id`='$child' ";
+		}
+		$childCondition = $childCondition.")"; 
+		return $childCondition;
+
+	}
+	public function getVoucherIdCondition($startDate, $endDate){
+			$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`>'".$startDate." 00:00:00' AND `date`< '".$endDate." 23:59:59';"));
+			$voucherIdConditon = " (`voucher_id` = '' ";
+			foreach ($ids as $id) {
+				$voucherIdConditon = " $voucherIdConditon OR `voucher_id` = '$id->id' ";
+			}
+			$voucherIdConditon = $voucherIdConditon.")";
+			return $voucherIdConditon;
+
+	}
+	public function getVoucherIdByOneDate($date, $isBeg){
+			$ids;
+			if($isBeg==1){
+				$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`<'".$date."00:00:00';"));
+			}else{
+				$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`<'".$date."23:59:59';"));
+
+			}
+			$voucherIdConditon = " (`voucher_id` = '' ";
+			foreach ($ids as $id) {
+				$voucherIdConditon = " $voucherIdConditon OR `voucher_id` = '$id->id' ";
+			}
+			$voucherIdConditon = $voucherIdConditon.")";
+			return $voucherIdConditon;
+
+	}
+
+	public function getFinancialStatementByDate(){ 
+			$startDate = Input::get('start_date');
+			$endDate = Input::get('end_date');
+
+			$object = new stdClass();
+			$childCondition = $this->getChildCondition(21);
+			$voucherIdConditon = $this->getVoucherIdCondition($startDate, $endDate);
+			$sqlForTradeDebtors = "SELECT SUM(`cr`) as receipts_from_trade_debtors FROM `general_accounts` WHERE $childCondition AND $voucherIdConditon;";
+			$receptTradeDators = DB::select(DB::raw($sqlForTradeDebtors));
+			$object->receipts_from_trade_debtors = $receptTradeDators[0]->receipts_from_trade_debtors ==null? '0.00': $receptTradeDators[0]->receipts_from_trade_debtors;
+
+			//Non operating Income acc_id = 38
+			$allChildsNonOp = $this->getChildCondition(38);
+			$sqlForOpIncome = "SELECT SUM(`cr`) as other_income FROM `general_accounts` WHERE $allChildsNonOp AND $voucherIdConditon;";
+			$other_income = DB::select(DB::raw($sqlForOpIncome));
+			$object->other_income = $other_income[0]->other_income ==null? '0.00': $other_income[0]->other_income;
+
+			$object->payments = json_decode($this->getAccountsBalanceWithDate($startDate, $endDate, 6, 0));
+
+			//Cash in Hand
+			$cashInHandBeg = DB::select(DB::raw("SELECT balance FROM `general_accounts` WHERE ".$this->getChildCondition(23)." AND ".$this->getVoucherIdByOneDate($startDate, 1)." order by id desc limit 1"));
+
+			if(sizeof($cashInHandBeg)<=0)
+				$object->cash_in_hand_opening = "0.0";
+			else
+				$object->cash_in_hand_opening = $cashInHandBeg[0]->balance;
+			$cashInHandEnd = DB::select(DB::raw("SELECT balance FROM `general_accounts` WHERE ".$this->getChildCondition(23)." AND ".$this->getVoucherIdByOneDate($endDate, 0)." order by id desc limit 1"));
+			
+			if(sizeof($cashInHandEnd)<=0)
+				$object->cash_in_hand_closing = "0.0";
+			else
+				$object->cash_in_hand_closing = $cashInHandEnd[0]->balance;
+
+			//Cash At Bank
+			$cashAtBankBeg = DB::select(DB::raw("SELECT balance FROM `general_accounts` WHERE ".$this->getChildCondition(22)." AND ".$this->getVoucherIdByOneDate($startDate, 1)." order by id desc limit 1"));
+			if(sizeof($cashAtBankBeg)<=0)
+				$object->cash_at_bank_opening = "0.0";
+			else
+				$object->cash_at_bank_opening = $cashAtBankBeg[0]->balance;
+
+			$cashAtBankEnd = DB::select(DB::raw("SELECT balance FROM `general_accounts` WHERE ".$this->getChildCondition(22)." AND ".$this->getVoucherIdByOneDate($endDate, 0)." order by id desc limit 1"));
+			
+			if(sizeof($cashAtBankEnd)<=0)
+				$object->cash_at_bank_closing = "0.0";
+			else
+				$object->cash_at_bank_closing = $cashAtBankEnd[0]->balance;
+		
+
+			return json_encode($object);
 	}
 
 
