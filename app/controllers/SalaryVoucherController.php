@@ -121,6 +121,11 @@ class SalaryVoucherController extends BaseController{
 			return json_encode($mss);
 	}
 
+	public function getLastIdOfSalaryVoucher(){
+		$res = DB::select(DB::raw("select max(id) as id from salary_voucher"))[0]->id;
+		return $res;
+	}
+
 
 	
 }

@@ -89,6 +89,11 @@ class PurchaseOrderController extends BaseController{
 			return json_encode($mss);
 	}
 
+	public function getLastIdOfPurchaseOrder(){
+		$res = DB::select(DB::raw("select max(id) as id from purchase_order"))[0]->id;
+		return $res;
+	}
+
 
 	
 }

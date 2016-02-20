@@ -34,5 +34,16 @@
 				$mss = array("Status" => $status, "Message" => $message);
 				return json_encode($mss);
 			}
+
+
+			public function getDepositVoucher(){
+				$start = Input::get('start_date');
+				$end = Input::get('end_date');
+
+				$res = DB::table('deposit_voucher')->whereBetween('date', array($start, $end))->get();
+				return json_encode($res);
+
+			}
+
 		}
  ?>

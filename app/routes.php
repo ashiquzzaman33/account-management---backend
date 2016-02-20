@@ -47,6 +47,11 @@ Route::get('/add/deposit/voucher', array(
 		'uses'	=>	'DepositVoucherController@createDepositVoucher'
 ));
 
+Route::get('/get/deposit/voucher', array(
+		'as'	=>	'getDepositVoucher',
+		'uses'	=>	'DepositVoucherController@getDepositVoucher'
+));
+
 
 
 /***************Report Section**************/
@@ -162,6 +167,11 @@ Route::get('/get/voucher/with/date', array(
 		'uses'	=>	'VoucherController@getVoucherWithDate'
 ));
 
+Route::get('/get/lastVoucherId', array(
+		'as'	=>	'getLastVoucherId',
+		'uses'	=>	'VoucherController@getLastVoucherId'
+));
+
 Route::get('/report/get/balance', array(
 		'as'	=>	'getBalance',
 		'uses'	=>	'ReportController@getBalanceOfAccount '
@@ -252,6 +262,10 @@ Route::get('/login', array(
 Route::get('/add/expenseVoucher', array(
 		'as'	=>	'addExpenseVoucher',
 		'uses'	=>	'ExpenseVoucherController@createExpenseVoucher'
+));
+Route::get('/get/expenseVoucher', array(
+		'as'	=>	'getExpenseVoucher',
+		'uses'	=>	'ExpenseVoucherController@getExpenseVoucher'
 ));
 Route::get('/get/voucher', array(
 		'as'	=>	'getVoucher',
@@ -366,6 +380,11 @@ Route::get('edit/purchase/order', array(
 		'uses'		=>	'PurchaseOrderController@editPurchaseOrder'
 	));
 
+Route::get('purchase/order/lastId', array(
+		'as'		=>	'getLastIdOfPurchaseOrder',
+		'uses'		=>	'PurchaseOrderController@getLastIdOfPurchaseOrder'
+	));
+
 ////SalaryVoucher
 
 Route::get('add/salary/voucher', array(
@@ -387,7 +406,10 @@ Route::get('edit/salary/voucher', array(
 
 
 
-
+Route::get('salary/voucher/lastId', array(
+		'as'		=>	'getLastIdOfSalaryVoucher',
+		'uses'		=>	'SalaryVoucherController@getLastIdOfSalaryVoucher'
+	));
 
 
 

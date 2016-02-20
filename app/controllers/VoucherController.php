@@ -219,10 +219,11 @@
 	public function getVoucherWithDate(){
 		$startDate = Input::get("start_date");
 		$endDate  = Input::get("end_date");
+		$id  = Input::get("id");
 		$result = array();
 	
 
-		$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`>'".$startDate." 00:00:00' AND `date`< '".$endDate." 23:59:59' AND id<>1;"));
+		$ids = DB::select(DB::raw("SELECT `id` FROM `vouchers` WHERE `date`>'".$startDate." 00:00:00' AND `date`< '".$endDate." 23:59:59' AND id=". $id .";"));
 
  
 
@@ -237,6 +238,11 @@
 		
 		return json_encode($result);
 	
+	}
+
+	public function getLastVoucherId(){
+		$res = DB::select(DB::raw("select max(id) as id from vouchers"))[0]->id;
+		return $res;
 	}
 
 

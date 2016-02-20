@@ -29,6 +29,17 @@
 				$mss = array("status" => $status, "message" => $message);
 				return $status;
 			}
+
+
+			public function getExpenseVoucher(){
+				$start = Input::get('start_date');
+				$end = Input::get('end_date');
+
+				$res = DB::table('expense_vouchers')->whereBetween('date', array($start, $end))->get();
+				return json_encode($res);
+
+			}
+
 		}
 
 
@@ -56,5 +67,7 @@
 			$mss = array("Status" => $status, "Message" => $message);
 			return json_encode($mss);
 		}*/
+
+
 
  ?>
