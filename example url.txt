@@ -2,7 +2,7 @@
 *********************************************
 1. Voucher
 
-	http://localhost/acc/public/add/voucher?location_id=1&voucher_type=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":60,"remark":"This is a test for account 60"},{"amount":1000,"account_id":59,"remark":"This is a test for account 59"},{"amount":555,"account_id":58,"remark":"This is a test for account 58"},{"amount":-2789,"account_id":61,"remark":"This is a test for account 7"}]}
+	http://localhost/acc/public/add/voucher?location_id=1&voucher_type=1&projectOrCnf=1&date=2015-06-19 03:15:32&narration=test&transaction={"transaction":[{"amount":1234,"account_id":34,"remark":"This is a test for account 60"},{"amount":1000,"account_id":33,"remark":"This is a test for account 59"},{"amount":555,"account_id":34,"remark":"This is a test for account 58"},{"amount":-2789,"account_id":21,"remark":"This is a test for account 7"}]}
 
 2. Voucher Type  
 
@@ -133,7 +133,7 @@
 *****************REPORT*********************
 27. Ledger of Account with child entry
 
-    http://localhost/acc/public/report/ledger/with/child/entry?account_id=7&start_date=2015-06-19&end_date=2016-06-30
+    http://localhost/acc/public/report/ledger/with/child/entry?account_id=7&start_date=2010-06-19&end_date=2016-06-30
 
 28.  Ledger of Account
 
@@ -169,6 +169,9 @@
 
     http://localhost/acc/public/report/trialbalance/with/date?start_date=2010-6-13&end_date=2020-6-20
 
+34.2 Financial Statement for period
+
+    http://localhost/acc/public/report/financial/statement/with/date?start_date=2010-6-13&end_date=2020-6-20
 *******************EDIT SOMETHING************
 35. Edit Location:
 

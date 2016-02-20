@@ -28,6 +28,8 @@
 
 8.	Receipt Payment Report ( Date Wise)
 
+	Done, Example url 34.2
+
 
 
 Voucher format
